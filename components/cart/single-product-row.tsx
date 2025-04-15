@@ -1,0 +1,81 @@
+import { TableCell, TableRow } from "@/components/ui/table";
+import { useRemoveProduct, useUpdateCart } from "@/hooks";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import { Minus, Plus, X } from "lucide-react";
+
+export function SingleProductRow({ item }: { item: CartItem }) {
+  // Translation
+  const t = useTranslations();
+
+  // Mutate
+  const { mutate: updateMutate, isPending: updateProductQuantityPending } = useUpdateCart();
+  const { mutate, isPending } = useRemoveProduct();
+  return (
+    <TableRow key={item.product._id}>
+      <TableCell>
+        {/* Product Image */}
+        <Image
+          width={200}
+          height={200}
+          src={item.product.image}
+          alt={item.product.details[0].title}
+        />
+      </TableCell>
+      <TableCell>
+        <div>
+          {/* Product Details */}
+          <h1 className="text-custom-brown text-xl">{item.product.details[0].title}</h1>
+          <h2 className="text-sm text-custom-brown-2">
+            {t("category")}: {item.product.category}
+          </h2>
+          <h2 className="font-bold text-xl text-custom-brown">
+            {t("price")}: ${item.product.price}
+          </h2>
+        </div>
+      </TableCell>
+      <TableCell>
+        <div className="flex flex-row gap-2">
+          {/* Quantity */}
+          <Button
+            disabled={updateProductQuantityPending || item.quantity === 1}
+            variant="outline"
+            className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
+            onClick={() =>
+              updateMutate({ productId: item.product._id, quantity: item.quantity - 1 })
+            }
+          >
+            <Minus />
+          </Button>
+          <span className="text-custom-yellow-2 bg-custom-brown p-2 rounded-full">
+            {item.quantity}
+          </span>
+          <Button
+            disabled={updateProductQuantityPending}
+            variant="outline"
+            className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
+            onClick={() =>
+              updateMutate({ productId: item.product._id, quantity: item.quantity + 1 })
+            }
+          >
+            <Plus />
+          </Button>
+        </div>
+      </TableCell>
+      <TableCell>
+        <h1>${item.price}</h1>
+      </TableCell>
+      <TableCell>
+        {/* Action */}
+        <Button
+          disabled={isPending}
+          onClick={() => mutate({ productId: item.product._id })}
+          className="bg-custom-yellow-2 text-black hover:bg-custom-yellow-2"
+        >
+          <X />
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+}
