@@ -9,6 +9,8 @@ import LocaleToggle from "../common/toggle-locale";
 import { useUserStore } from "@/store/userStore";
 import { UserNavbar } from "./user-navbar";
 import { Loader } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 
 export function Navbar() {
   // Translation & Locale
@@ -16,8 +18,36 @@ export function Navbar() {
   const locale = useLocale();
   const { user, loading, clearUser } = useUserStore(); // Add `loading`
 
+  // State
+  const [isHidden, setIsHidden] = useState(true);
+  const { scrollY } = useScroll();
+  const lastRef = useRef(0);
+
+  // when scroll down 300px hide the navbar.
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const difference = y - lastRef.current;
+    if (Math.abs(difference) > 50) {
+      setIsHidden(difference > 0);
+      lastRef.current = y;
+    }
+  });
+
   return (
-    <nav className="container flex justify-between items-center my-5">
+    <motion.nav
+      animate={isHidden ? "hidden" : "visible"}
+      whileHover="visible"
+      onFocusCapture={() => setIsHidden(false)}
+      variants={{
+        hidden: {
+          y: "-90%",
+        },
+        visible: {
+          y: "0%",
+        },
+      }}
+      transition={{ duration: 0.2 }}
+      className="fixed top-1 z-10 flex w-full justify-center items-center gap-x-20 bg-custom-yellow-2 p-2"
+    >
       {/* Logo (Clickable, Links to Home) */}
       {locale === "en" ? (
         <Link href="/" aria-label="Home">
@@ -25,11 +55,12 @@ export function Navbar() {
         </Link>
       ) : (
         <Link className="text-2xl font-bold text-custom-brown" href="/" aria-label="Home">
-          <h1>هوس <span className="text-custom-yellow-2">الزهور</span></h1>
-      </Link>
-
+          <h1>
+            هوس <span className="text-custom-yellow-2">الزهور</span>
+          </h1>
+        </Link>
       )}
-      
+
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center space-x-6">
         <NavLinksComponent />
@@ -40,9 +71,17 @@ export function Navbar() {
         <LocaleToggle />
 
         {/* Show Nothing When Loading */}
-        {loading ? <Loader className="animate-spin" /> : user ? <UserNavbar user={user} clearUser={clearUser} /> : (
-          <Button className="border border-yellow-700 hover:opacity-80 uppercase" variant="ghost" asChild>
-            <Link href={`/${locale}/login`}>{t('login-register-0')}</Link>
+        {loading ? (
+          <Loader className="animate-spin" />
+        ) : user ? (
+          <UserNavbar user={user} clearUser={clearUser} />
+        ) : (
+          <Button
+            className="border border-yellow-700 hover:opacity-80 uppercase"
+            variant="ghost"
+            asChild
+          >
+            <Link href={`/${locale}/login`}>{t("login-register-0")}</Link>
           </Button>
         )}
       </div>
@@ -52,6 +91,6 @@ export function Navbar() {
         <LocaleToggle />
         <DropdownNavbar />
       </div>
-    </nav>
+    </motion.nav>
   );
 }
