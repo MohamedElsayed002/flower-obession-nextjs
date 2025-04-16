@@ -212,7 +212,7 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="rounded-tr-full px-10 rounded-bl-full bg-custom-brown hover:bg-custom-brown/80"
+                        className="rounded-tr-full px-10 rounded-bl-full text-white bg-custom-brown hover:bg-custom-brown/80"
                         type="submit"
                       >
                         {t("add-to-cart")}
