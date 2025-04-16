@@ -2,7 +2,7 @@
 
 Flower Obsession is a modern, full-stack web application designed for a florist business, offering users the ability to design custom bouquets, explore inspirational designs, and access services like express shipping and ecological deliveries. The frontend is built with Next.js, a React framework, and is deployed on Vercel for seamless performance and scalability. The application supports multiple languages, with the Arabic version accessible at florist-nextjs-neon.vercel.app/ar.
 
-<img src="bg.png" alt="Project overview">
+<video src="output.gif" controls width="500"></video>
 
 ## Table of Contents
 
