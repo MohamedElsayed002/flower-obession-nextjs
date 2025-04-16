@@ -57,9 +57,17 @@ export async function getAllProducts(lang: string = "en", category: string) {
 
 
 
-export async function getShopProducts(lang: string = "en") {
+export async function getShopProducts(lang: string = "en",search?:string) {
+  const params = new URLSearchParams()
+  params.set("lang",lang)
+
+  if(search) {
+    params.append("search",search)
+  }
+
+  console.log(`${process.env.API}/products/all?${params.toString()}`)
   const response = await fetch(
-    `${process.env.API}/products/shop?lang=${lang}`,
+    `${process.env.API}/products/all?category=shop&${params.toString()}`,
     {
       method: "GET",
       cache: "no-cache", // Ensures fresh data, prevents caching

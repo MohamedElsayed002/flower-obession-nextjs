@@ -24,7 +24,7 @@ export function Navbar() {
           <Image width={200} height={200} src="/logo.png" alt="Flower Obsession Logo" priority />
         </Link>
       ) : (
-        <Link className="text-2xl font-bold text-custom-brown" href="/" aria-label="Home">
+        <Link className="text-2xl font-bold text-custom-brown" href="/ar" aria-label="Home">
           <h1>هوس <span className="text-custom-yellow-2">الزهور</span></h1>
       </Link>
 

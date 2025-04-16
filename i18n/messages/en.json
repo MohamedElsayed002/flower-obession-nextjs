@@ -216,5 +216,7 @@
   "user-updated-successfully": "User updated successfully",
   "no-paid": "No Paid",
   "paid": "Paid",
-  "login-first": "Please Login"
+  "login-first": "Please Login",
+  "search-product": "Search Product",
+  "no_products_found": "No Products Found"
 }

@@ -35,7 +35,7 @@ export default function InspirationComp() {
 
   if (isPending) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 w-4/5 mx-auto md:w-full gap-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 w-4/5 md:w-full gap-y-3">
         <ProductSkeleton />
         <ProductSkeleton />
         <ProductSkeleton />
