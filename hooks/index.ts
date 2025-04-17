@@ -92,14 +92,15 @@ export const useUpdateCart = () => {
 
 export const useOrderStripe = () => {
 
+    const locale = useLocale()
+
     const {mutate,isPending,error} = useMutation({
         mutationKey: ["order"],
         mutationFn: async () => {
-            const result = await orderStripe()
+            const result = await orderStripe({lang:locale})
             return result
         },
         onSuccess: (data) => {
-            console.log(data)
             window.location.href = data.url
         },
         onError: (error) => {

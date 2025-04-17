@@ -209,14 +209,12 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                 <div>
                   {user ? (
                     (data?.quantity ?? 0) > 0 ? (
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                      <Button
                         className="rounded-tr-full px-10 rounded-bl-full text-white bg-custom-brown hover:bg-custom-brown/80"
                         type="submit"
                       >
                         {t("add-to-cart")}
-                      </motion.button>
+                      </Button>
                     ) : null
                   ) : (
                     <Button className="rounded-tr-full px-10 rounded-bl-full bg-custom-brown hover:bg-custom-brown/80">

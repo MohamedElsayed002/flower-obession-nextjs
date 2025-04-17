@@ -330,11 +330,11 @@ export async function updateUser({userId,name,phone}:{userId:string,name:string,
   return data
 }
 
-export async function orderStripe() {
+export async function orderStripe({lang} : {lang:string}) {
   const accessToken = cookies().get("access_token")?.value;
 
   const response = await fetch(
-    `${process.env.API}/order/add-stripe`,{
+    `${process.env.API}/order/add-stripe?lang=${lang}`,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",

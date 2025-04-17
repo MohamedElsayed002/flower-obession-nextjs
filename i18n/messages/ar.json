@@ -151,7 +151,7 @@
   "product-quantity-updated": "تم تحديث كمية المنتج",
   "cart-summary": "ملخص العربة",
   "total-price": "إجمالي السعر",
-  "checkout": "الدفع",
+  "checkout": "الدفع عبر الإنترنت",
   "total": "المجموع",
   "delivery": "توصيل",
   "price-after-discount": "السعر بعد الخصم",
@@ -216,5 +216,9 @@
   "paid": "مدفوع",
   "login-first": "الرجاء تسجيل الدخول",
   "search-product": "بحث المنتج",
-  "no_products_found": "لم يتم العثور على منتجات"
+  "no_products_found": "لم يتم العثور على منتجات",
+  "cash": "كاش",
+  "cash-online": "كاش عند التوصيل/ عبر الإنترنت",
+  "not-paid": "دفع على التسليم",
+  "cash-on-delivery": "النقد عند التسليم"
 }

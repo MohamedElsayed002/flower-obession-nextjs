@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { SingleProductSkeleton } from "@/components/skeletons/single-product-skeleton";
 import { useOrderStripe, useUserCart } from "@/hooks";
 import { SingleProductRow } from "./single-product-row";
@@ -16,15 +16,17 @@ import EmptyCart from "../common/empty-cart";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion"; // Import framer-motion
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function CartTable() {
   // Translation
   const t = useTranslations();
 
-  const { mutate: OrderStripeMutate, isPending : OrderStripeLoading } = useOrderStripe();
+  const locale = useLocale()
 
   // Mutate
   const { data, isPending, error } = useUserCart();
+  const { mutate: OrderStripeMutate, isPending: OrderStripeLoading } = useOrderStripe();
 
   if (isPending) {
     return <SingleProductSkeleton />;
@@ -91,13 +93,20 @@ export default function CartTable() {
             <h1 className="text-xl font-bold text-center">
               {t("total")} ${data?.totalPrice ?? 0}
             </h1>
-            <Button
-              className="bg-custom-brown w-full text-white text-center py-2 rounded-md -mt-1"
-              onClick={() => OrderStripeMutate()}
-              disabled={OrderStripeLoading}
-            >
-              {t("checkout")}
-            </Button>
+            <div className="flex gap-2 items-center">
+              <Button
+                className="bg-custom-brown w-full text-white text-center py-2 rounded-md -mt-1"
+                onClick={() => OrderStripeMutate()}
+                disabled={OrderStripeLoading}
+              >
+                {t("checkout")}
+              </Button>
+              <Link href={`/${locale}/checkout`} passHref>
+                <Button className="bg-custom-brown-2" asChild>
+                  <span>{t('cash-on-delivery')}</span>
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </motion.div>

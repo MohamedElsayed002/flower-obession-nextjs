@@ -155,7 +155,7 @@
   "price-after-discount": "Price after Discount",
   "delivery": "Delivery",
   "total": "Total",
-  "checkout": "Checkout",
+  "checkout": "Pay Online",
   "action": "Action",
   "street": "Street",
   "city": "City",
@@ -218,5 +218,9 @@
   "paid": "Paid",
   "login-first": "Please Login",
   "search-product": "Search Product",
-  "no_products_found": "No Products Found"
+  "no_products_found": "No Products Found",
+  "cash": "Cash",
+  "cash-online": "Cash / Online",
+  "not-paid": "Pay on Delivery",
+  "cash-on-delivery": "Cash on Delivery"
 }
