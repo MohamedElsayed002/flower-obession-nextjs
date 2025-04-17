@@ -12,16 +12,24 @@ import { useRouter } from "next/navigation";
 import useForgotPassword from "@/hooks/auth/use-forgot-password-hook";
 import useVerifyPassword from "@/hooks/auth/use-verify-password-hook";
 import useResetPassword from "@/hooks/auth/use-reset-password-hook";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 export default function ForgotPassword() {
+  // Translation
   const t = useTranslations();
+
+  // Localization & Routing
   const locale = useLocale();
   const router = useRouter();
+
+  // State
   const [emailSaved, setEmailSaved] = useState("");
   const [emailDialog, setEmailDialog] = useState(true);
   const [codeDialog, setCodeDialog] = useState(false);
   const [confirmPasswordDialog, setConfirmPasswordDialog] = useState(false);
 
+  // Mutate
   const {
     isPending: ForgotPasswordLoading,
     mutate: ForgotPasswordMutate,
@@ -40,6 +48,7 @@ export default function ForgotPassword() {
     error: ResetPasswordError,
   } = useResetPassword();
 
+  // Schemas
   const formSchema = z.object({
     email: z.string().email({ message: t("email-invalid") }),
   });
@@ -193,13 +202,16 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    {/* Code Input */}
-                    <Input
-                      disabled={VerifyPasswordLoading}
-                      className="w-full"
-                      placeholder={t("enter-code")}
-                      {...field}
-                    />
+                    <InputOTP pattern={REGEXP_ONLY_DIGITS} maxLength={6} {...field}>
+                      <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        <InputOTPSlot index={4} />
+                        <InputOTPSlot index={5} />
+                      </InputOTPGroup>
+                    </InputOTP>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
