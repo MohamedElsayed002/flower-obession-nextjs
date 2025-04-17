@@ -1,6 +1,6 @@
 "use client"
 import { useUserStore } from "@/store/userStore";
-import { createOrder, favoriteProduct, getUserCart, getUserFavorite, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
+import { createOrder, favoriteProduct, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { redirect } from "next/navigation";
@@ -90,6 +90,31 @@ export const useUpdateCart = () => {
     }
 }
 
+export const useOrderStripe = () => {
+
+    const {mutate,isPending,error} = useMutation({
+        mutationKey: ["order"],
+        mutationFn: async () => {
+            const result = await orderStripe()
+            return result
+        },
+        onSuccess: (data) => {
+            console.log(data)
+            window.location.href = data.url
+        },
+        onError: (error) => {
+            toast.error(error.message)
+        }
+    })
+
+    return {
+        mutate,
+        isPending,
+        error
+    }
+}
+
+
 export const userUpdateUser = () => {
     const queryClient = useQueryClient();
     const { user,setUser } = useUserStore();
@@ -137,6 +162,8 @@ export const useRemoveProduct = () => {
         error
     }
 }
+
+
 
 export default function useFavoriteButton() {
 

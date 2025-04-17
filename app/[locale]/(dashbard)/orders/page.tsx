@@ -57,15 +57,24 @@ export default async function OrdersPage() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {data.map((item) => (
-                        <TableRow key={item._id}>
-                            <TableCell>{item._id}</TableCell>
-                            <TableCell>{item.shippingAddress.street}</TableCell>
-                            <TableCell>{item.paymentMethod}</TableCell>
-                            <TableCell>{item.isPaid === true ? t('paid') : t('no-paid')}</TableCell>
-                            <TableCell>${item.totalOrderPrice}</TableCell>
-                        </TableRow>
-                    ))}
+                    {data.map((item) => {
+                        if(item.isPaid == false) return // to return only paid orders 
+                        return (
+                            (
+                                <TableRow key={item._id}>
+                                    <TableCell>{item._id}</TableCell>
+                                    <TableCell>{item.shippingAddress.street}</TableCell>
+                                    <TableCell>{item.paymentMethod}</TableCell>
+                                    <TableCell>
+                                        <span className="bg-green-500 text-white p-2  rounded-md">
+                                        {item.isPaid ? t("paid") : null}
+                                        </span>
+                                    </TableCell>
+                                    <TableCell>${item.totalOrderPrice}</TableCell>
+                                </TableRow>
+                            )
+                        )
+                    })}
                 </TableBody>
             </Table>
         </div>

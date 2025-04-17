@@ -8,21 +8,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { SingleProductSkeleton } from "@/components/skeletons/single-product-skeleton";
-import { useUserCart } from "@/hooks";
+import { useOrderStripe, useUserCart } from "@/hooks";
 import { SingleProductRow } from "./single-product-row";
 import EmptyCart from "../common/empty-cart";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
 import { motion } from "framer-motion"; // Import framer-motion
+import { Button } from "../ui/button";
 
 export default function CartTable() {
   // Translation
   const t = useTranslations();
 
-  // Locale
-  const locale = useLocale();
+  const { mutate: OrderStripeMutate, isPending : OrderStripeLoading } = useOrderStripe();
 
   // Mutate
   const { data, isPending, error } = useUserCart();
@@ -87,19 +86,18 @@ export default function CartTable() {
             <h2 className="text-md font-medium">
               {t("price-after-discount")} ${data?.totalPriceDiscount}
             </h2>
-            <h1>
-              {t("delivery")} ${data?.totalPrice ? (data.totalPrice * 0.05).toFixed(2) : 0}
-            </h1>
+            <h1>{t("delivery")} $0</h1>
             <Separator />
             <h1 className="text-xl font-bold text-center">
-              {t("total")} ${(data?.totalPrice ?? 0) + (data?.totalPrice ?? 0) * 0.05}
+              {t("total")} ${data?.totalPrice ?? 0}
             </h1>
-            <Link
+            <Button
               className="bg-custom-brown w-full text-white text-center py-2 rounded-md -mt-1"
-              href={`/${locale}/checkout?cartId=${data?.id}`}
+              onClick={() => OrderStripeMutate()}
+              disabled={OrderStripeLoading}
             >
               {t("checkout")}
-            </Link>
+            </Button>
           </div>
         </div>
       </motion.div>
