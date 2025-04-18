@@ -11,6 +11,10 @@ body {
   background-color: #fdf3e9;
 }
 
+* ::selection {
+  background-color: #f9e0d2;
+  color: white;
+}
 
 
 @layer utilities {

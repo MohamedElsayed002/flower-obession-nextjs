@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp } from 'lucide-react'; // optional: use any icon you like
+import { ArrowUp } from 'lucide-react'; 
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +36,7 @@ const ScrollToTopButton = () => {
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 p-3 bg-black text-white rounded-full shadow-lg z-50 hover:bg-gray-800"
+          className="fixed bottom-6 right-6 p-3 bg-custom-brown text-white rounded-full shadow-lg z-50 hover:bg-custom-brown/80"
         >
           <ArrowUp className="w-5 h-5" />
         </motion.button>
