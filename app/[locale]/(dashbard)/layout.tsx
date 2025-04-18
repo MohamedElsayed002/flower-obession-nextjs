@@ -1,3 +1,4 @@
+import ScrollToTopButton from "@/components/common/scroll-top-button";
 import Footer from "@/components/footer/footer";
 import { Navbar } from "@/components/navbar/navbar";
 import ClientLayout from "@/utils/providers/client-provider";
@@ -18,6 +19,7 @@ export default function RootLayout({
       <div>
         <Navbar />
         <main className="container min-h-[38rem]">{children}</main>
+        <ScrollToTopButton/>
         <Footer />
       </div>
     </ClientLayout>
