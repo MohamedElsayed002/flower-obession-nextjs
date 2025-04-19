@@ -12,5 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function FavoritePage() {
-  return <FavoriteCart />;
+  return (
+    <section>
+      <FavoriteCart />
+    </section>
+  )
 }

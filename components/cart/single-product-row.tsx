@@ -39,6 +39,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
         <div className="flex flex-row gap-2">
           {/* Quantity */}
           <Button
+          aria-label={t('decrease-quantity')}
             disabled={updateProductQuantityPending || item.quantity === 1}
             variant="outline"
             className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
@@ -52,6 +53,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
             {item.quantity}
           </span>
           <Button
+          aria-label={t('increase-quantity')}
             disabled={updateProductQuantityPending}
             variant="outline"
             className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
@@ -69,6 +71,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
       <TableCell>
         {/* Action */}
         <Button
+          aria-label={t('remove-product')}
           disabled={isPending}
           onClick={() => mutate({ productId: item.product._id })}
           className="bg-custom-yellow-2 text-black hover:bg-custom-yellow-2"

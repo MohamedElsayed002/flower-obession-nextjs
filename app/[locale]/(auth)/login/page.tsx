@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -96,6 +96,7 @@ export default function LoginPage() {
         />
         <p className="text-sm text-red-500">{error?.message}</p>
         <Button
+          aria-label={t("submit")}
           disabled={isPending}
           className="w-full bg-custom-brown hover:bg-custom-brown/80"
           type="submit"

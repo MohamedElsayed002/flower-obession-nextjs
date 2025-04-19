@@ -56,6 +56,7 @@ export function NewsLetterEmail() {
               </FormControl>
               <FormMessage className="text-red-400 text-sm" />
               <Button
+                aria-label={t("subscribe")}
                 type="submit"
                 className="px-6 bg-[#1B2A34] text-white font-medium rounded-full hover:bg-gray-700 shadow-md"
               >

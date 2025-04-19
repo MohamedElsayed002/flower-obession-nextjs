@@ -12,5 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function InspirationPage() {
-  return <InspirationComp />;
+  return (
+    <section>
+      <InspirationComp />
+    </section>
+  )
 }

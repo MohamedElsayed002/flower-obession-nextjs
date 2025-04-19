@@ -14,6 +14,7 @@ export default function EmptyCart() {
       {/* Title */}
       <h1 className="text-3xl mb-5">{t("no-products-available-0")}</h1>
       <Link
+        aria-label={t("go-shopping")}
         className="mt-4 bg-custom-brown hover:bg-custom-brown/80 py-3 px-5 text-white rounded-md"
         href={`/${locale}/shop`}
       >

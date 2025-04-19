@@ -63,6 +63,7 @@ export default function InspirationComp() {
               selectedParams === "home" ? "text-white" : ""
             )}
             onClick={() => handleCategoryChange("home")}
+            aria-label={t("home")}
           >
             <h1>{t("Home")}</h1>
           </div>
@@ -72,6 +73,7 @@ export default function InspirationComp() {
               "bg-[#FBC3A7] py-2 cursor-pointer px-3 rounded-full text-custom-brown border border-custom-brown",
               selectedParams === "weddings" ? "text-white" : ""
             )}
+          aria-label={t("weddings")}
           >
             {t("weddings")}
           </h1>
@@ -81,6 +83,7 @@ export default function InspirationComp() {
               "bg-[#FBC3A7] py-2 cursor-pointer px-3 rounded-full text-custom-brown border border-custom-brown",
               selectedParams === "events" ? "text-white" : ""
             )}
+            aria-label={t("events")}
           >
             {t("events")}
           </h1>
@@ -90,6 +93,7 @@ export default function InspirationComp() {
               "bg-[#FBC3A7] py-2 cursor-pointer px-3 rounded-full text-custom-brown border border-custom-brown",
               selectedParams === "bouquets" ? "text-white" : ""
             )}
+            aria-label={t("bouquets")}
           >
             {t("bouquets")}
           </h1>
@@ -99,6 +103,7 @@ export default function InspirationComp() {
               "bg-[#FBC3A7] py-2 cursor-pointer px-3 rounded-full text-custom-brown border border-custom-brown",
               selectedParams === "christmas" ? "text-white" : ""
             )}
+            aria-label={t("christmas")}
           >
             {t("christmas")}
           </h1>

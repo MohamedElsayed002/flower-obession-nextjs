@@ -14,9 +14,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function CheckoutPage() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2">
+    <section className="grid grid-cols-1 md:grid-cols-2">
       <CheckoutForm />
-      <CheckoutAnimation />
-    </div>
+      <aside>
+        <CheckoutAnimation />
+      </aside>
+    </section>
   );
 }

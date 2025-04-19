@@ -24,6 +24,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Badge } from "../ui/badge";
 
 export default function SingleProduct({ params }: { params: { slug: string } }) {
   // Decode Arabic text
@@ -200,9 +201,9 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                     )}
                   />
                 ) : (
-                  <h1 className="bg-custom-brown text-white text-center rounded-md p-[0.38rem] md:p-2">
+                  <Badge className="bg-custom-brown hover:bg-custom-brown/80 text-white text-center rounded-md p-[0.38rem] md:p-2.5">
                     {t("out-stock")}
-                  </h1>
+                  </Badge>
                 )}
               </div>
               <div className="w-full flex gap-3">
@@ -210,6 +211,7 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                   {user ? (
                     (data?.quantity ?? 0) > 0 ? (
                       <Button
+                        aria-label={t("add-to-cart")}
                         className="rounded-tr-full px-10 rounded-bl-full text-white bg-custom-brown hover:bg-custom-brown/80"
                         type="submit"
                       >
@@ -217,7 +219,10 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                       </Button>
                     ) : null
                   ) : (
-                    <Button className="rounded-tr-full px-10 rounded-bl-full bg-custom-brown hover:bg-custom-brown/80">
+                    <Button
+                      aria-label={t("login-please")}
+                      className="rounded-tr-full px-10 rounded-bl-full bg-custom-brown hover:bg-custom-brown/80"
+                    >
                       <Link href={`/${locale}/login`}>{t("login-please")}</Link>
                     </Button>
                   )}

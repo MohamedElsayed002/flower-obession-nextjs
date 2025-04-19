@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react'; 
+import { useTranslations } from 'next-intl';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+  const t = useTranslations();
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -31,6 +32,7 @@ const ScrollToTopButton = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.button
+          aria-label={t('scroll-to-top')}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}

@@ -46,5 +46,9 @@ export default function SingleProductPage({
 }: {
   params: { slug: string; locale: string };
 }) {
-  return <SingleProduct params={params} />;
+  return (
+    <section>
+      <SingleProduct params={params} />
+    </section>
+  )
 }

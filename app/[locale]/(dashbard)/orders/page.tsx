@@ -45,7 +45,7 @@ export default async function OrdersPage() {
   }
 
   return (
-    <div dir={locale === "ar" ? "rtl" : "ltr"}>
+    <section dir={locale === "ar" ? "rtl" : "ltr"}>
       <Table>
         <TableCaption>{t("a-list-of-your-orders")}</TableCaption>
         <TableHeader>
@@ -79,6 +79,6 @@ export default async function OrdersPage() {
           })}
         </TableBody>
       </Table>
-    </div>
+    </section>
   );
 }

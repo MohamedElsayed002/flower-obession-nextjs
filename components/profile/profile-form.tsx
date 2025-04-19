@@ -107,7 +107,7 @@ export default function ProfileForm() {
             <Input disabled defaultValue={user?.role} />
           </div>
 
-          <Button type="submit" className="bg-custom-brown hover:bg-custom-brown/80">
+          <Button aria-label={t("update-user")} type="submit" className="bg-custom-brown hover:bg-custom-brown/80">
             {t("update-user")}
           </Button>
         </form>

@@ -220,5 +220,20 @@
   "cash": "كاش",
   "cash-online": "كاش عند التوصيل/ عبر الإنترنت",
   "not-paid": "دفع على التسليم",
-  "cash-on-delivery": "النقد عند التسليم"
+  "cash-on-delivery": "النقد عند التسليم",
+  "decrease-quantity": "انخفاض الكرادب",
+  "remove-product": "إزالة المنتج",
+  "increase-quantity": "الزيادة",
+  "scroll-to-top": "انتقل إلى الأعلى",
+  "toggle-language": "تبديل اللغة",
+  "add-remove-from-favorite": "الإضافات الإضافية من الفائدة",
+  "explore-0": "يستكشف",
+  "navigation.menu-button": "زر القائمة",
+  "logo-english": "شعار اللغة الإنجليزية",
+  "logo-arabic": "شعار اللغة العربية",
+  "user-navbar": "المستخدم NAVBAR",
+  "navigation.admin": "مسؤل",
+  "navigation.Admin": "مسؤل",
+  "navigation.logout": "تسجيل الخروج",
+  "navigation.login-register": "سجل تسجيل الدخول"
 }

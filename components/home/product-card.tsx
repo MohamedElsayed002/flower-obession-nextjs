@@ -22,7 +22,7 @@ export default function ProductCard({ product }: { product: Products }) {
       {product.details[0].description.length > 100
         ? product.details[0].description.substring(0, 150) + "..."
         : product.details[0].description}
-      <Button className="border" variant="link" asChild>
+      <Button aria-label={t("view-more")} className="border" variant="link" asChild>
         <Link
           className="flex items-center gap-2"
           href={`/${locale}/shop/${product.details[0].slug}`}

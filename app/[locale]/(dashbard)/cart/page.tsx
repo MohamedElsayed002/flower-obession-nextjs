@@ -12,5 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function CartPage() {
-  return <CartTable />;
+  return (
+    <section>
+      <CartTable/>
+    </section>
+  );
 }

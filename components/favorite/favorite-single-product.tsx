@@ -1,6 +1,6 @@
 import useFavoriteButton from "@/hooks";
 import { Loader, X } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,6 +10,8 @@ export function FavoriteSingleProduct({ item }: { item: Products }) {
 
   // Locale
   const locale = useLocale();
+
+  const t = useTranslations();
 
   return (
     <div className="relative" key={item._id}>
@@ -24,6 +26,7 @@ export function FavoriteSingleProduct({ item }: { item: Products }) {
       </Link>
       <div className="absolute top-5 ltr:right-14 rtl:right-10 md:right-8">
         <div
+          aria-label={t("add-remove-from-favorite")}
           onClick={() => FavoriteButtonMutate(item._id)}
           className="w-10 h-10 rounded-full bg-custom-yellow-2 flex justify-center items-center text-white cursor-pointer"
         >

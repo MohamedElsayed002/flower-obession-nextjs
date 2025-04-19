@@ -181,6 +181,7 @@ export default function ForgotPassword() {
             <p className="text-red-500 text-sm">{ForgotPasswordError?.message}</p>
             {/* Submit Button */}
             <Button
+              aria-label={t("submit")}
               disabled={ForgotPasswordLoading}
               className="w-full bg-custom-brown hover:bg-custom-brown/80"
               type="submit"
@@ -220,6 +221,7 @@ export default function ForgotPassword() {
             <p className="text-red-500 text-sm">{VerifyPasswordError?.message}</p>
             {/* Submit Button */}
             <Button
+              aria-label={t("submit")}
               disabled={VerifyPasswordLoading}
               className="w-full bg-custom-brown hover:bg-custom-brown/80"
               type="submit"
@@ -280,6 +282,7 @@ export default function ForgotPassword() {
             )}
             {/* Submit Button */}
             <Button
+              aria-label={t("submit")}
               disabled={ResetPasswordLoading}
               className="w-full bg-custom-brown hover:bg-custom-brown/80"
               type="submit"

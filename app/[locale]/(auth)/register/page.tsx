@@ -76,7 +76,7 @@ export default function RegisterPage() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-      RegisterMutate(
+    RegisterMutate(
       {
         name: values.name,
         email: values.email,
@@ -196,6 +196,7 @@ export default function RegisterPage() {
         />
         <p className="text-red-500 text-sm">{error?.message}</p>
         <Button
+          aria-label={t("submit")}
           disabled={isPending}
           className="w-full bg-custom-brown hover:bg-custom-brown/80"
           type="submit"

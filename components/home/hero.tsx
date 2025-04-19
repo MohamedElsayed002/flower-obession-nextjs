@@ -24,7 +24,7 @@ export default function Hero() {
           {t("blossom-every-moment-with-fresh-and-beautiful-flowers")}
         </h1>
         <p className="text-custom-brown-2 mt-4 text-base sm:text-lg">{t("hero-description")}</p>
-        <Button className="bg-custom-brown hover:bg-custom-brown/80 mt-4" asChild>
+        <Button aria-label={t('explore-0')} className="bg-custom-brown hover:bg-custom-brown/80 mt-4" asChild>
           <Link
             className="py-2 px-8 rounded-tr-2xl rounded-bl-2xl cursor-pointer"
             href={`/${locale}/inspiration`}

@@ -222,5 +222,20 @@
   "cash": "Cash",
   "cash-online": "Cash / Online",
   "not-paid": "Pay on Delivery",
-  "cash-on-delivery": "Cash on Delivery"
+  "cash-on-delivery": "Cash on Delivery",
+  "decrease-quantity": "decrease-quantity",
+  "increase-quantity": "increase-quantity",
+  "remove-product": "remove-product",
+  "scroll-to-top": "Scroll to top",
+  "toggle-language": "toggle language",
+  "add-remove-from-favorite": "add-remove-from-favorite",
+  "explore-0": "Explore",
+  "navigation.menu-button": "Menu Button",
+  "logo-english": "Logo English",
+  "logo-arabic": "Logo Arabic",
+  "user-navbar": "User Navbar",
+  "navigation.admin": "Admin",
+  "navigation.Admin": "Admin",
+  "navigation.logout": "Logout",
+  "navigation.login-register": "Login Register"
 }

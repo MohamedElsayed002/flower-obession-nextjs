@@ -29,7 +29,7 @@ export default function LocaleToggle() {
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="outline-none">
+            <DropdownMenuTrigger aria-label={t('toggle-language')} className="outline-none">
                 <Globe className="outline-none" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>

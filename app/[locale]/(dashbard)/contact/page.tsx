@@ -16,7 +16,7 @@ export default async function ContactPage() {
   const t = await getTranslations();
 
   return (
-    <div className="flex gap-5 justify-between flex-col md:flex-col mb-10">
+    <section className="flex gap-5 justify-between flex-col md:flex-col mb-10">
       <div className="relative w-fit">
         <h1 className="absolute inset-0 flex items-center text-start justify-center text-4xl text-custom-brown font-bold">
           {t("contact")}
@@ -35,6 +35,6 @@ export default async function ContactPage() {
           loading="lazy"
         />
       </div>
-    </div>
+    </section>
   );
 }

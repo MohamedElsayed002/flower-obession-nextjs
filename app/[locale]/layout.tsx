@@ -41,7 +41,6 @@ export default function LocaleLayout({
         )}
       >
         <Providers>
-          {/* Main content */}
           {children}
         </Providers>
       </body>

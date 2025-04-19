@@ -109,6 +109,7 @@ export default function ContactForm() {
                     )}
                 />
                 <Button
+                    aria-label={t("submit")}
                     className="rounded-tr-full rounded-bl-full px-10  bg-custom-brown hover:bg-custom-brown/80"
                     type="submit"
                     disabled={form.formState.isSubmitting}

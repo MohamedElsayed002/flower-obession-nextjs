@@ -15,12 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClientLayout> {/* ✅ Fetch user once here */}
+    <ClientLayout>
+      {" "}
+      {/* ✅ Fetch user once here */}
       <div>
-        <Navbar />
+        <header>
+          <Navbar />
+        </header>
         <main className="container min-h-[38rem]">{children}</main>
-        <ScrollToTopButton/>
-        <Footer />
+        <ScrollToTopButton />
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </ClientLayout>
   );

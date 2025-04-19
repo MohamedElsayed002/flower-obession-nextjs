@@ -30,7 +30,7 @@ export default function HomeComponent5() {
           {t("we-are-much-more-than-a-florist")}
         </h1>
         <p className="mt-2 sm:mt-4 text-sm sm:text-base">{t("more-than-floirst-desc")}</p>
-        <Button className="mt-4 sm:mt-6 bg-white hover:bg-white/80 w-full rounded-tr-full rounded-bl-full text-custom-brown text-lg sm:text-xl px-4 py-2">
+        <Button aria-label={t("explore")} className="mt-4 sm:mt-6 bg-white hover:bg-white/80 w-full rounded-tr-full rounded-bl-full text-custom-brown text-lg sm:text-xl px-4 py-2">
           {t("explore")}
         </Button>
       </motion.div>

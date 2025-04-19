@@ -1,4 +1,5 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -128,6 +129,7 @@ export default function CheckoutForm() {
 
           {/* Button */}
           <Button
+            aria-label={t("order")}
             className="rounded-tr-full rounded-bl-full px-10  bg-custom-brown hover:bg-custom-brown/80"
             type="submit"
           >

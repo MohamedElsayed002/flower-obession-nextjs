@@ -36,6 +36,7 @@ export default function Footer() {
               } 
               return (
                 <Link
+                
                   key={link.id}
                   className={`uppercase text-white text-sm ${
                     pathname === `/${locale}${link.href}` && "text-black font-bold"
