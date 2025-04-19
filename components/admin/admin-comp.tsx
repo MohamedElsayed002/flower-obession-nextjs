@@ -1,23 +1,24 @@
-"use client"
-import { useUserStore } from "@/store/userStore"
-import { useLocale, useTranslations } from "next-intl"
-import { redirect } from "next/navigation"
+"use client";
+
+import { useUserStore } from "@/store/userStore";
+import { useLocale } from "next-intl";
+import { redirect } from "next/navigation";
+import AllOrders from "./all-orders";
 
 export default function AdminComp() {
 
-    // Translations
-    const t = useTranslations()
+  const locale = useLocale();
 
-    const locale = useLocale()
+  // Store
+  const { user } = useUserStore();
 
-    // Store
-    const { user} = useUserStore()
+  if (user?.role !== "Admin") {
+    redirect(`/${locale}/`);
+  }
 
-    if(user?.role !== "Admin") {
-        redirect(`/${locale}/`)
-    }
-
-    return (
-        <h1>{t('admin')}</h1>
-    )
+  return (
+    <section>
+      <AllOrders />
+    </section>
+  );
 }

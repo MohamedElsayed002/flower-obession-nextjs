@@ -230,12 +230,11 @@
   "toggle-language": "toggle language",
   "add-remove-from-favorite": "add-remove-from-favorite",
   "explore-0": "Explore",
-  "navigation.menu-button": "Menu Button",
   "logo-english": "Logo English",
   "logo-arabic": "Logo Arabic",
   "user-navbar": "User Navbar",
-  "navigation.admin": "Admin",
-  "navigation.Admin": "Admin",
-  "navigation.logout": "Logout",
-  "navigation.login-register": "Login Register"
+  "all-orders": "All Orders",
+  "all-products": "All Products",
+  "all-orders-0": "All Orders",
+  "total-orders-in-the-website": "Total Orders in the website"
 }

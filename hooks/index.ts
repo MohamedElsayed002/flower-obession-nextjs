@@ -1,10 +1,27 @@
 "use client"
 import { useUserStore } from "@/store/userStore";
-import { createOrder, favoriteProduct, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
+import { allOrders, createOrder, favoriteProduct, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
+import { OrderAdminResponse } from "@/utils/types/orders";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { redirect } from "next/navigation";
 import { toast } from "sonner";
+
+
+export const useGetAllOrders = ({page}: {page:number}) => {
+
+    const {data, isPending , error} = useQuery<OrderAdminResponse>({
+        queryKey: ["allOrders",page],
+        queryFn: () => allOrders({page})
+    })
+    
+    return {
+        data,
+        isPending,
+        error
+    }
+}
+
 
 
 export const useUserFavorite = () => {
@@ -89,6 +106,7 @@ export const useUpdateCart = () => {
         error
     }
 }
+
 
 export const useOrderStripe = () => {
 

@@ -25,6 +25,13 @@ export interface ShippingAddress {
     paidAt?: string;
     deliveredAt?: string;
   }
+
+  export interface OrderAdminResponse {
+    data : Order[]
+    total: number;
+    page: number;
+    totalPages: number
+  }
   
   export type OrdersResponse = Order[];
   

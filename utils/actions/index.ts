@@ -349,3 +349,23 @@ export async function orderStripe({lang} : {lang:string}) {
   }
   return data
 }
+
+export async function allOrders({page = 1}:{page:number}) {
+  const accessToken = cookies().get("access_token")?.value;
+
+  const response = await fetch(
+    `${process.env.API}/order?page=${page}`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`
+      },
+    }
+  )
+
+  const data = await response.json()
+  if (!response.ok || data.statusCode === 401) {
+    throw new Error(data.message || "Failed to update quantity");
+  }
+  return data
+}

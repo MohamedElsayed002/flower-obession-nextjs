@@ -228,12 +228,9 @@
   "toggle-language": "تبديل اللغة",
   "add-remove-from-favorite": "الإضافات الإضافية من الفائدة",
   "explore-0": "يستكشف",
-  "navigation.menu-button": "زر القائمة",
   "logo-english": "شعار اللغة الإنجليزية",
   "logo-arabic": "شعار اللغة العربية",
   "user-navbar": "المستخدم NAVBAR",
-  "navigation.admin": "مسؤل",
-  "navigation.Admin": "مسؤل",
-  "navigation.logout": "تسجيل الخروج",
-  "navigation.login-register": "سجل تسجيل الدخول"
+  "all-orders-0": "جميع الطلبات",
+  "total-orders-in-the-website": "إجمالي الطلبات في الموقع"
 }
