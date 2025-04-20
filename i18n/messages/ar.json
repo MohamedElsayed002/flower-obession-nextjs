@@ -232,5 +232,9 @@
   "logo-arabic": "شعار اللغة العربية",
   "user-navbar": "المستخدم NAVBAR",
   "all-orders-0": "جميع الطلبات",
-  "total-orders-in-the-website": "إجمالي الطلبات في الموقع"
+  "total-orders-in-the-website": "إجمالي الطلبات في الموقع",
+  "1-product-available-in-stock": "منتج وحيد متاح في مخزن",
+  "this-website-uses-cookies-to-enhance-the-user-experience": "يستخدم هذا الموقع ملفات تعريف الارتباط لتعزيز تجربة المستخدم.",
+  "i-understand": "أفهم",
+  "i-decline": "انخفض"
 }

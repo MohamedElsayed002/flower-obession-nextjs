@@ -236,5 +236,9 @@
   "all-orders": "All Orders",
   "all-products": "All Products",
   "all-orders-0": "All Orders",
-  "total-orders-in-the-website": "Total Orders in the website"
+  "total-orders-in-the-website": "Total Orders in the website",
+  "1-product-available-in-stock": "1 Product Available in Stock",
+  "this-website-uses-cookies-to-enhance-the-user-experience": "This website uses cookies to enhance the user experience.",
+  "i-understand": "I understand",
+  "i-decline": "I decline"
 }

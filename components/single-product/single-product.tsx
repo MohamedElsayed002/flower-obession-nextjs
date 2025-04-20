@@ -210,13 +210,18 @@ export default function SingleProduct({ params }: { params: { slug: string } }) 
                 <div>
                   {user ? (
                     (data?.quantity ?? 0) > 0 ? (
-                      <Button
-                        aria-label={t("add-to-cart")}
-                        className="rounded-tr-full px-10 rounded-bl-full text-white bg-custom-brown hover:bg-custom-brown/80"
-                        type="submit"
-                      >
-                        {t("add-to-cart")}
-                      </Button>
+                      <div>
+                        <Button
+                          aria-label={t("add-to-cart")}
+                          className="rounded-tr-full px-10 rounded-bl-full text-white bg-custom-brown hover:bg-custom-brown/80"
+                          type="submit"
+                        >
+                          {t("add-to-cart")}
+                        </Button>
+                        {data?.quantity === 1 && (
+                          <p className="text-xs w-full mt-2">{t('1-product-available-in-stock')}</p>
+                        )}
+                      </div>
                     ) : null
                   ) : (
                     <Button

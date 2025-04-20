@@ -1,3 +1,4 @@
+import CookieBanner from "@/components/common/cookie-banner";
 import ScrollToTopButton from "@/components/common/scroll-top-button";
 import Footer from "@/components/footer/footer";
 import { Navbar } from "@/components/navbar/navbar";
@@ -16,7 +17,6 @@ export default function RootLayout({
 }>) {
   return (
     <ClientLayout>
-      {" "}
       {/* ✅ Fetch user once here */}
       <div>
         <header>
@@ -24,6 +24,7 @@ export default function RootLayout({
         </header>
         <main className="container min-h-[38rem]">{children}</main>
         <ScrollToTopButton />
+        <CookieBanner/>
         <footer>
           <Footer />
         </footer>
