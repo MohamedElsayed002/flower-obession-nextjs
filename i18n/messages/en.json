@@ -240,5 +240,10 @@
   "1-product-available-in-stock": "1 Product Available in Stock",
   "this-website-uses-cookies-to-enhance-the-user-experience": "This website uses cookies to enhance the user experience.",
   "i-understand": "I understand",
-  "i-decline": "I decline"
+  "i-decline": "I decline",
+  "logout-success": "Logged out successfully",
+  "users": "Users",
+  "purchased": "Purchased",
+  "stats": "Stats",
+  "monthly-orders": "Monthly Orders"
 }

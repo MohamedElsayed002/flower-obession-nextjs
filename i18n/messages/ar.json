@@ -236,5 +236,10 @@
   "1-product-available-in-stock": "منتج وحيد متاح في مخزن",
   "this-website-uses-cookies-to-enhance-the-user-experience": "يستخدم هذا الموقع ملفات تعريف الارتباط لتعزيز تجربة المستخدم.",
   "i-understand": "أفهم",
-  "i-decline": "انخفض"
+  "i-decline": "انخفض",
+  "logout-success": "سجلت بنجاح",
+  "users": "المستخدمون",
+  "purchased": "تم شراؤها",
+  "stats": "الإحصائيات",
+  "monthly-orders": "طلبات الشهور السابقه"
 }

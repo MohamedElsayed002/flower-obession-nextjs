@@ -1,11 +1,32 @@
 "use client"
 import { useUserStore } from "@/store/userStore";
-import { allOrders, createOrder, favoriteProduct, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
+import { allOrders, createOrder, favoriteProduct, fetchAdminStats, fetchChartData, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
 import { OrderAdminResponse } from "@/utils/types/orders";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
-import { redirect } from "next/navigation";
 import { toast } from "sonner";
+
+
+export const useFetchAdminStats = () => {
+    const { data , isPending , error} = useQuery<FetchAdminStats>({
+        queryKey: ['admin stats'],
+        queryFn: () => fetchAdminStats()
+    })
+
+    return {
+        data,isPending,error
+    }
+}
+
+export const useFetchChartData = () => {
+    const { data , isPending , error} = useQuery<DateCountResponse>({
+        queryKey: ['chart data'],
+        queryFn: () => fetchChartData()
+    })
+    return {
+        data,isPending,error
+    }
+}
 
 
 export const useGetAllOrders = ({page}: {page:number}) => {

@@ -12,11 +12,14 @@ import { Button } from "../ui/button";
 import { removeCookiesFromHeader } from "@/utils/actions";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 export function UserNavbar({ user, clearUser }: { user: User; clearUser: () => void }) {
   const t = useTranslations();
   const locale = useLocale();
+
   const handleLogout = async () => {
+    toast.success(t("logout-success"));
     await removeCookiesFromHeader();
     clearUser();
     window.location.reload();
@@ -48,14 +51,14 @@ export function UserNavbar({ user, clearUser }: { user: User; clearUser: () => v
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-            <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/orders`}>
-                {t("orders")}
-            </Link>
+          <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/orders`}>
+            {t("orders")}
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-            <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/profile`}>
-                {t("profile")}
-            </Link>
+          <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/profile`}>
+            {t("profile")}
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuLabel>

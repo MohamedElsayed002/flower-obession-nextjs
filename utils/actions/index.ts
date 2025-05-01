@@ -1,5 +1,5 @@
 "use server";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 
 export async function GetUserInfo() {
   const accessToken = cookies().get("access_token")?.value;
@@ -65,7 +65,6 @@ export async function getShopProducts(lang: string = "en",search?:string) {
     params.append("search",search)
   }
 
-  console.log(`${process.env.API}/products/all?${params.toString()}`)
   const response = await fetch(
     `${process.env.API}/products/all?category=shop&${params.toString()}`,
     {
@@ -366,6 +365,45 @@ export async function allOrders({page = 1}:{page:number}) {
   const data = await response.json()
   if (!response.ok || data.statusCode === 401) {
     throw new Error(data.message || "Failed to update quantity");
+  }
+  return data
+}
+
+
+export async function fetchAdminStats() {
+  const accessToken = cookies().get("access_token")?.value
+
+  const response = await fetch(
+    `${process.env.API}/users/admin-stats`, {
+      headers: {
+        "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`
+      }
+    }
+  )
+
+  const data = await response.json()
+  if(!response.ok) {
+    throw new Error(data.message || "Failed to fetch admin stats")
+  }
+  return data
+}
+
+export async function fetchChartData() {
+  const accessToken = cookies().get("access_token")?.value
+
+  const response = await fetch(
+    `${process.env.API}/users/fetch-chart-data`, {
+      headers: {
+        "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`
+      }
+    }
+  )
+
+  const data = await response.json()
+  if(!response.ok) {
+    throw new Error(data.message || "Failed to fetch Chart Data")
   }
   return data
 }
