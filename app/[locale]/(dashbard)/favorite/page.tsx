@@ -1,13 +1,14 @@
-import FavoriteCart from "@/components/favorite/favorite-cart";
-import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
+import FavoriteCart from "@/components/favorite/favorite-cart";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
 
   return {
     title: t("favorite-title"),
-    description: t("favorite-description"),
+    description: t("favorite-description")
   };
 }
 

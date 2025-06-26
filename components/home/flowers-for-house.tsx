@@ -1,31 +1,31 @@
 "use client"
 
-import { Flower, Truck } from "lucide-react";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { motion } from "framer-motion"; // Import motion
+import { Flower, Truck } from "lucide-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 const FeatureCard = ({
   icon,
   title,
-  description,
+  description
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
 }) => (
   <motion.div
-    className="flex flex-col md:flex-row items-center gap-3 max-w-sm"
+    className="flex max-w-sm flex-col items-center gap-3 md:flex-row"
     initial={{ opacity: 0, x: -50 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.5 }}
   >
-    <div className="flex justify-center items-center w-10 h-10 p-2 bg-[#FFC37B] rounded-full">
+    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFC37B] p-2">
       {icon}
     </div>
     <div>
-      <h2 className="text-custom-brown text-2xl">{title}</h2>
+      <h2 className="text-2xl text-custom-brown">{title}</h2>
       <p className="text-custom-brown-2">{description}</p>
     </div>
   </motion.div>
@@ -36,16 +36,16 @@ const FlowerForHouse = () => {
 
   return (
     <>
-      <section className="relative grid md:grid-cols-2 mt-10 md:mt-0">
+      <section className="relative mt-10 grid md:mt-0 md:grid-cols-2">
         <motion.div
-          className="hidden md:flex flex-col"
+          className="hidden flex-col md:flex"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <div className="relative">
-            <div className="absolute left-3/4 transform -translate-x-full bg-[#858B5F] text-white w-[80vw] max-w-[900px] h-[150px] z-[-10] rounded-r-full p-5">
-              <div className="bg-[#FFC37B] w-[500px] h-5 absolute -bottom-4" />
+            <div className="absolute left-3/4 z-[-10] h-[150px] w-[80vw] max-w-[900px] -translate-x-full transform rounded-r-full bg-[#858B5F] p-5 text-white">
+              <div className="absolute -bottom-4 h-5 w-[500px] bg-[#FFC37B]" />
               <h2 className="ml-64 text-4xl">{t("flowers-for-the-home")}</h2>
               <p className="ml-64 mt-2">{t("flowers-for-home-description")}</p>
             </div>
@@ -53,9 +53,9 @@ const FlowerForHouse = () => {
         </motion.div>
       </section>
 
-      <section className="grid md:grid-cols-2 md:mt-60 -mt-20 gap-20 items-center">
+      <section className="-mt-20 grid items-center gap-20 md:mt-60 md:grid-cols-2">
         <motion.div
-          className="flex gap-10 flex-col sm:flex-row"
+          className="flex flex-col gap-10 sm:flex-row"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}

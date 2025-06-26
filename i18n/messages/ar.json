@@ -92,7 +92,7 @@
   "phone-must-not-exceed-15-digits": "يجب ألا يتجاوز الهاتف 15 رقمًا",
   "phone-must-contain-only-numbers": "يجب أن يحتوي الهاتف على أرقام فقط",
   "register": "يسجل",
-  "enter your name": "اسمك",
+  "enter your name": "محمد السيد",
   "confirm your password": "قم بتأكيد كلمة المرور الخاصة بك",
   "enter your phone number": "أدخل رقم هاتفك",
   "gender": "جنس",
@@ -241,5 +241,16 @@
   "users": "المستخدمون",
   "purchased": "تم شراؤها",
   "stats": "الإحصائيات",
-  "monthly-orders": "طلبات الشهور السابقه"
+  "monthly-orders": "طلبات الشهور السابقه",
+  "select_gender_description": "الرجاء تحديد جنسك من القائمة",
+  "confirm-password": "تأكيد كلمة المرور",
+  "password": "كلمة المرور",
+  "confirm-your-password": "قم بتأكيد كلمة المرور الخاصة بك",
+  "verification-code": "رمز التحقق",
+  "new-password": "كلمة المرور الجديدة",
+  "delivery-and-return-info": "معلومات التسليم والعودة",
+  "amount": "كمية",
+  "select-amount": "حدد المبلغ",
+  "size": "مقاس",
+  "select-size": "حدد الحجم"
 }

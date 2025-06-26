@@ -1,21 +1,23 @@
 "use client";
 
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { toast } from "sonner";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { Button } from "../ui/button";
-import { Menu } from "lucide-react";
-import { NavLinks } from "./nav-links";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
 import { useUserStore } from "@/store/userStore";
 import { removeCookiesFromHeader } from "@/utils/actions";
-import { toast } from "sonner";
+
+import { Button } from "../ui/button";
+import { NavLinks } from "./nav-links";
 
 export const DropdownNavbar = () => {
   const pathname = usePathname();
@@ -43,7 +45,7 @@ export const DropdownNavbar = () => {
       <DropdownMenuContent className="w-52" align="end" sideOffset={10}>
         {user && user.role === "Admin" && (
           <DropdownMenuItem>
-            <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/admin`}>
+            <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/admin`}>
               {t("Admin")}
             </Link>
           </DropdownMenuItem>
@@ -64,8 +66,8 @@ export const DropdownNavbar = () => {
             <DropdownMenuItem key={link.id} className="uppercase">
               <Link
                 href={`/${locale}${link.href}`}
-                className={`w-full px-2 py-1 rounded-md transition-all ${
-                  pathname === link.href ? "bg-gray-400 p-2 text-white font-semibold" : ""
+                className={`w-full rounded-md px-2 py-1 transition-all ${
+                  pathname === link.href ? "bg-gray-400 p-2 font-semibold text-white" : ""
                 }`}
               >
                 {tNav(link.name)}
@@ -83,7 +85,7 @@ export const DropdownNavbar = () => {
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem>
-            <Button className="hover:opacity-80 uppercase" variant="ghost">
+            <Button className="uppercase hover:opacity-80" variant="ghost">
               <Link href={`/${locale}/login`}>{t("login-register")}</Link>
             </Button>
           </DropdownMenuItem>

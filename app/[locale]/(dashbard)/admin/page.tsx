@@ -1,5 +1,6 @@
-import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
 import AdminComp from "@/components/admin/admin-comp";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -7,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: t("admin"),
-    description: t("admin-description"),
+    description: t("admin-description")
   };
 }
 

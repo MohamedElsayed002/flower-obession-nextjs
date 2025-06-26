@@ -1,7 +1,8 @@
 import { useFetchAdminStats, useFetchChartData } from "@/hooks";
+
+import { SingleProductSkeleton } from "../skeletons/single-product-skeleton";
 import Chart from "./chart";
 import StatsContainer from "./stats-container";
-import { SingleProductSkeleton } from "../skeletons/single-product-skeleton";
 
 export default function AdminStats() {
   const { data: adminStats, isPending: adminStatsLoading } = useFetchAdminStats();

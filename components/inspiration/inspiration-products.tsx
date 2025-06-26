@@ -1,14 +1,15 @@
 "use client";
 
-import { ProductSkeleton } from "@/components/skeletons/product-skeleton";
-import { getAllProducts } from "@/utils/actions";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion"; // Import framer-motion
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import Image from "next/image";
-import { cn } from "@/utils/lib/utils";
+
 import ProductCard from "@/components/single-product/product-card";
-import { motion } from "framer-motion"; // Import framer-motion
+import { ProductSkeleton } from "@/components/skeletons/product-skeleton";
+import { getAllProducts } from "@/utils/actions";
+import { cn } from "@/utils/lib/utils";
 
 export default function InspirationComp() {
   const t = useTranslations();
@@ -20,11 +21,11 @@ export default function InspirationComp() {
   const {
     data: products = [],
     isPending,
-    error,
+    error
   } = useQuery({
     queryKey: ["products", locale, selectedParams],
     queryFn: () => getAllProducts(locale, selectedParams || "home"),
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5
   });
 
   const handleCategoryChange = (category: string) => {
@@ -35,7 +36,7 @@ export default function InspirationComp() {
 
   if (isPending) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 w-4/5 md:w-full gap-y-3">
+      <div className="grid w-4/5 grid-cols-1 gap-y-3 md:w-full md:grid-cols-3">
         <ProductSkeleton />
         <ProductSkeleton />
         <ProductSkeleton />
@@ -49,19 +50,20 @@ export default function InspirationComp() {
 
   return (
     <>
-      <div className="flex gap-5 justify-between flex-col md:flex-row md:items-center">
+      <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
         <div className="relative w-fit">
-          <h1 className="absolute inset-0 flex items-center text-start justify-center text-4xl text-custom-brown font-bold">
+          <h1 className="absolute inset-0 flex items-center justify-center text-start text-4xl font-bold text-custom-brown">
             {t("inspiration")}
           </h1>
-          <Image src="/shape-4.png" alt="al" width={200} height={200} />
+          <Image src="/shape-4.png" alt="Shape image" width={200} height={200} />
         </div>
-        <div className="flex gap-4 overflow-x-auto sm:overflow-y-auto sm:flex-row scrollbar-hide">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide sm:flex-row sm:overflow-y-auto">
           <div
             className={cn(
               "bg-[#FBC3A7] py-2 cursor-pointer px-3 rounded-full text-custom-brown border border-custom-brown",
               selectedParams === "home" ? "text-white" : ""
             )}
+            tabIndex={0}
             onClick={() => handleCategoryChange("home")}
             aria-label={t("home")}
           >
@@ -111,7 +113,7 @@ export default function InspirationComp() {
       </div>
 
       {/* Product Grid with Animation */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 w-full max-w-6xl mx-auto mb-20">
+      <div className="mx-auto mb-20 grid w-full max-w-6xl grid-cols-1 gap-6 p-6 md:grid-cols-3">
         {products.slice(0, 9).map((product: Products, index: number) => {
           return (
             <motion.div
@@ -125,8 +127,8 @@ export default function InspirationComp() {
           );
         })}
         {products.length === 0 && (
-          <div className="min-h-[24.5rem] grid place-items-center w-full">
-            <h1 className="text-5xl font-bold text-custom-brown w-full">
+          <div className="grid min-h-[24.5rem] w-full place-items-center">
+            <h1 className="w-full text-5xl font-bold text-custom-brown">
               {t("no-products-available")}
             </h1>
           </div>

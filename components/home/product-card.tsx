@@ -1,10 +1,11 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
-import { Button } from "../ui/button";
-import Link from "next/link";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+
+import { Button } from "../ui/button";
 export default function ProductCard({ product }: { product: Products }) {
   const t = useTranslations();
   const locale = useLocale();
@@ -16,7 +17,7 @@ export default function ProductCard({ product }: { product: Products }) {
         alt={product.details[0].title}
         width={384} // equivalent to w-96
         height={288} // equivalent to h-72
-        className="w-full max-w-[384px] h-auto rounded-md object-cover"
+        className="h-auto w-full max-w-[384px] rounded-md object-cover"
       />{" "}
       <h1 className="text-xl font-bold">{product.details[0].title}</h1>
       {product.details[0].description.length > 100

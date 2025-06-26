@@ -2,7 +2,7 @@ import {
   Pagination,
   PaginationContent,
   PaginationItem,
-  PaginationLink,
+  PaginationLink
 } from "@/components/ui/pagination";
 
 interface PaginationDemoProps {

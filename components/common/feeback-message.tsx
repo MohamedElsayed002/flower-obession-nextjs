@@ -7,7 +7,7 @@ type FeedBackMessageProps = {
 export default function FeedBackMessage({ children }: FeedBackMessageProps) {
   if (!children) return null;
   return (
-    <p className="text-center text-red-500 items-center gap-1 font-semibold text-sm justify-center">
+    <p className="items-center justify-center gap-1 text-center text-sm font-semibold text-red-500">
       <AlertCircle size={15} /> {children}
     </p>
   );

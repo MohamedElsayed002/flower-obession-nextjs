@@ -1,22 +1,24 @@
 "use client";
 
+import { motion } from "framer-motion"; // Import framer-motion
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+
+import { SingleProductSkeleton } from "@/components/skeletons/single-product-skeleton";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
   TableCaption,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
-import { useLocale, useTranslations } from "next-intl";
-import { SingleProductSkeleton } from "@/components/skeletons/single-product-skeleton";
 import { useOrderStripe, useUserCart } from "@/hooks";
-import { SingleProductRow } from "./single-product-row";
+
 import EmptyCart from "../common/empty-cart";
-import { Separator } from "@/components/ui/separator";
-import { motion } from "framer-motion"; // Import framer-motion
 import { Button } from "../ui/button";
-import Link from "next/link";
+import { SingleProductRow } from "./single-product-row";
 
 export default function CartTable() {
   // Translation
@@ -41,7 +43,7 @@ export default function CartTable() {
   }
 
   return (
-    <div className="grid grid-cols-12 -ml-6 gap-8 my-10">
+    <div className="my-10 -ml-6 grid grid-cols-12 gap-8">
       {/* Animate Table */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -49,7 +51,7 @@ export default function CartTable() {
         transition={{ duration: 0.6 }}
         className="col-span-12 md:col-span-8"
       >
-        <Table className="overflow-x-auto sm:overflow-y-auto sm:flex-row scrollbar-hide">
+        <Table className="overflow-x-auto scrollbar-hide sm:flex-row sm:overflow-y-auto">
           {/* Table Header */}
           <TableCaption>{t("products-cart")}</TableCaption>
           <TableHeader>
@@ -78,8 +80,8 @@ export default function CartTable() {
         className="col-span-12 md:col-span-4"
       >
         {/* Add cart summary or total here */}
-        <div className="bg-custom-yellow-2 w-96 rounded-xl p-10 h-96">
-          <h1 className="text-center -pt-10 text-xl font-bold mb-2">{t("cart-summary")}</h1>
+        <div className="h-96 w-96 rounded-xl bg-custom-yellow-2 p-10">
+          <h1 className="-pt-10 mb-2 text-center text-xl font-bold">{t("cart-summary")}</h1>
           <Separator />
           <div className="mt-10 flex flex-col gap-y-4">
             <h1 className="text-md font-medium">
@@ -90,12 +92,12 @@ export default function CartTable() {
             </h2>
             <h1>{t("delivery")} $0</h1>
             <Separator />
-            <h1 className="text-xl font-bold text-center">
+            <h1 className="text-center text-xl font-bold">
               {t("total")} ${data?.totalPrice ?? 0}
             </h1>
-            <div className="flex gap-2 items-center">
+            <div className="flex items-center gap-2">
               <Button
-                className="bg-custom-brown w-full text-white text-center py-2 rounded-md -mt-1"
+                className="-mt-1 w-full rounded-md bg-custom-brown py-2 text-center text-white"
                 onClick={() => OrderStripeMutate()}
                 disabled={OrderStripeLoading}
               >
@@ -103,7 +105,7 @@ export default function CartTable() {
               </Button>
               <Link href={`/${locale}/checkout`} passHref>
                 <Button className="bg-custom-brown-2" asChild>
-                  <span>{t('cash-on-delivery')}</span>
+                  <span>{t("cash-on-delivery")}</span>
                 </Button>
               </Link>
             </div>

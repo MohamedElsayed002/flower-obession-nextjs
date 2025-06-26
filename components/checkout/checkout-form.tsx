@@ -1,15 +1,16 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+import { Confetti, type ConfettiRef } from "@/components/magicui/confetti";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useTranslations } from "next-intl";
 import { useCreateOrder } from "@/hooks";
-import { useRef, useState } from "react";
-import { Confetti, type ConfettiRef } from "@/components/magicui/confetti";
 
 export default function CheckoutForm() {
   // Translation
@@ -32,7 +33,7 @@ export default function CheckoutForm() {
       .string()
       .min(10, { message: t("phone-number-must-be-at-least-10-digits") })
       .max(15, { message: t("phone-number-is-too-long") })
-      .regex(/^[0-9]+$/, { message: t("phone-number-must-contain-only-digits") }),
+      .regex(/^[0-9]+$/, { message: t("phone-number-must-contain-only-digits") })
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -40,8 +41,8 @@ export default function CheckoutForm() {
     defaultValues: {
       street: "",
       city: "",
-      phone: "",
-    },
+      phone: ""
+    }
   });
 
   // Function
@@ -51,7 +52,7 @@ export default function CheckoutForm() {
       {
         onSuccess: () => {
           setShow(true);
-        },
+        }
       }
     );
   }
@@ -71,7 +72,7 @@ export default function CheckoutForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-4/5 mx-auto md:mt-20 flex gap-y-4 flex-col"
+          className="mx-auto flex w-4/5 flex-col gap-y-4 md:mt-20"
         >
           {/* Street Input */}
           <FormField
@@ -130,7 +131,7 @@ export default function CheckoutForm() {
           {/* Button */}
           <Button
             aria-label={t("order")}
-            className="rounded-tr-full rounded-bl-full px-10  bg-custom-brown hover:bg-custom-brown/80"
+            className="rounded-bl-full rounded-tr-full bg-custom-brown  px-10 hover:bg-custom-brown/80"
             type="submit"
           >
             {t("order")}

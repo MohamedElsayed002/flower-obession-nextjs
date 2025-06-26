@@ -1,7 +1,8 @@
-import SingleProduct from "@/components/single-product/single-product";
 import type { Metadata } from "next";
-import { getProductBySlug } from "@/utils/actions";
 import { getTranslations } from "next-intl/server";
+
+import SingleProduct from "@/components/single-product/single-product";
+import { getProductBySlug } from "@/utils/actions";
 
 type Props = {
   params: {
@@ -29,20 +30,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title,
         description,
-        images: [product.image],
-      },
+        images: [product.image]
+      }
     };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return {
       title: t("productNotFound"),
-      description: t("productNotFoundDescription"),
+      description: t("productNotFoundDescription")
     };
   }
 }
 
 export default function SingleProductPage({
-  params,
+  params
 }: {
   params: { slug: string; locale: string };
 }) {

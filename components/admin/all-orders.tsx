@@ -1,6 +1,8 @@
 "use client";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { useGetAllOrders } from "@/hooks";
+
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -8,12 +10,12 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { useTranslations } from "next-intl";
-import { PaginationDemo } from "./pagination";
+import { useGetAllOrders } from "@/hooks";
+
 import { SingleProductSkeleton } from "../skeletons/single-product-skeleton";
+import { PaginationDemo } from "./pagination";
 
 export default function AllOrders() {
   const t = useTranslations();
@@ -23,10 +25,10 @@ export default function AllOrders() {
   if (isPending) return <SingleProductSkeleton />;
 
   return (
-    <div className="flex text-center flex-col justify-center items-center mt-14">
+    <div className="mt-14 flex flex-col items-center justify-center text-center">
       <div>
         <h1 className="text-3xl font-bold text-custom-brown">{t("all-orders-0")}</h1>
-        <h2 className="text-custom-brown-2 text-sm text-center mt-3 mb-10">
+        <h2 className="mb-10 mt-3 text-center text-sm text-custom-brown-2">
           {t("total-orders-in-the-website")} {data?.total}
         </h2>
       </div>
@@ -51,7 +53,7 @@ export default function AllOrders() {
                 <Badge
                   className={`${
                     item.isPaid ? "bg-green-500" : "bg-red-500"
-                  } text-white p-2 rounded-md`}
+                  } rounded-md p-2 text-white`}
                 >
                   {item.isPaid ? t("paid") : t("not-paid")}
                 </Badge>

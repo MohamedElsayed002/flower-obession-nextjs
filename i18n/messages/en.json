@@ -92,7 +92,7 @@
   "phone-must-not-exceed-15-digits": "Phone must not exceed 15 digits",
   "phone-must-contain-only-numbers": "Phone must contain only numbers",
   "register": "Register",
-  "enter your name": "Name",
+  "enter your name": "John Doe",
   "confirm your password": "Confirm your Password",
   "enter your phone number": "Enter your phone number",
   "gender": "Gender",
@@ -245,5 +245,16 @@
   "users": "Users",
   "purchased": "Purchased",
   "stats": "Stats",
-  "monthly-orders": "Monthly Orders"
+  "monthly-orders": "Monthly Orders",
+  "select_gender_description": "Please select your gender from the list",
+  "confirm-password": "Confirm Password",
+  "password": "Password",
+  "confirm-your-password": "Confirm your password",
+  "verification-code": "Verification code",
+  "new-password": "New Password",
+  "delivery-and-return-info": "Delivery and return info",
+  "amount": "Amount",
+  "select-amount": "Select amount",
+  "size": "Size",
+  "select-size": "Select Size"
 }

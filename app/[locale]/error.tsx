@@ -1,7 +1,8 @@
 "use client"
+import { useTranslations } from "next-intl"
+
 import ErrorComponent from "@/components/common/error-component"
 import { Button } from "@/components/ui/button"
-import { useTranslations } from "next-intl"
 
 export default function Error({
     error,
@@ -15,7 +16,7 @@ export default function Error({
     const t = useTranslations()
 
     return (
-        <main className="min-h-screen flex flex-col justify-center items-center">
+        <main className="flex min-h-screen flex-col items-center justify-center">
         {/* Message */}
         <ErrorComponent>{error.message}</ErrorComponent>
   

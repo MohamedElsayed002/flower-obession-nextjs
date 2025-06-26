@@ -7,19 +7,19 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: t("auth-title"),
-    description: t("auth-description"),
+    description: t("auth-description")
   };
 }
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
+    <div className="grid h-screen grid-cols-1 md:grid-cols-2">
       {/* Image Container */}
-      <div className="relative w-full h-full hidden md:flex">
+      <div className="relative hidden h-full w-full md:flex">
         <Image
           src="/auth-image-2.jpg"
           alt="Background Image"

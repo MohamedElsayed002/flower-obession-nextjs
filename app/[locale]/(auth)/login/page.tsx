@@ -1,13 +1,14 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
 import useLogin from "@/hooks/auth/use-login-hook";
 
 export default function LoginPage() {
@@ -31,35 +32,35 @@ export default function LoginPage() {
       .regex(/[a-z]/, { message: t("password-must-contain-at-least-one-lowercase-letter") })
       .regex(/[0-9]/, { message: t("password-must-contain-at-least-one-number") })
       .regex(/[!@#$%^&*()_]/, {
-        message: t("password-must-contain-at-least-one-special-character-and"),
-      }),
+        message: t("password-must-contain-at-least-one-special-character-and")
+      })
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: "",
-    },
+      password: ""
+    }
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     LoginMutate(
       {
         email: values.email,
-        password: values.password,
+        password: values.password
       },
       {
         onSuccess: () => {
           window.location.href = `/${locale}/`;
-        },
+        }
       }
     );
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-96 ">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-96 space-y-4 ">
         <h1 className="text-4xl text-custom-brown">{t("login")}</h1>
         <FormField
           control={form.control}
@@ -68,6 +69,9 @@ export default function LoginPage() {
             <FormItem>
               <FormControl>
                 <Input
+                  autoFocus
+                  tabIndex={1}
+                  aria-label="Email Address"
                   disabled={isPending}
                   placeholder={t("enter-your-email-address")}
                   {...field}
@@ -84,6 +88,8 @@ export default function LoginPage() {
             <FormItem>
               <FormControl>
                 <Input
+                  aria-label="Password"
+                  tabIndex={2}
                   disabled={isPending}
                   type="password"
                   placeholder={t("enter-your-password")}
@@ -96,6 +102,7 @@ export default function LoginPage() {
         />
         <p className="text-sm text-red-500">{error?.message}</p>
         <Button
+          tabIndex={3}
           aria-label={t("submit")}
           disabled={isPending}
           className="w-full bg-custom-brown hover:bg-custom-brown/80"
@@ -105,11 +112,15 @@ export default function LoginPage() {
         </Button>
         <div className="-mt-2 text-custom-brown-2">
           <span> {t("dont-have-an-account")}</span>
-          <Link className="hover:underline" href={`/${locale}/register`}>
+          <Link tabIndex={4} className="underline" href={`/${locale}/register`}>
             {t("register")}
           </Link>
         </div>
-        <Link className="text-custom-brown-2 hover:underline" href={`/${locale}/forgot-password`}>
+        <Link
+          tabIndex={5}
+          className="text-custom-brown-2 underline"
+          href={`/${locale}/forgot-password`}
+        >
           {t("forgot-password")}
         </Link>
       </form>

@@ -1,10 +1,12 @@
 "use client";
-import ProductCard from "./product-card";
-import { useLocale, useTranslations } from "next-intl";
-import { getAllProducts } from "@/utils/actions";
 import { useQuery } from "@tanstack/react-query";
-import { ProductSkeleton } from "../skeletons/product-skeleton";
 import { motion } from "framer-motion"; // Import motion for animations
+import { useLocale, useTranslations } from "next-intl";
+
+import { getAllProducts } from "@/utils/actions";
+
+import { ProductSkeleton } from "../skeletons/product-skeleton";
+import ProductCard from "./product-card";
 
 export default function HomeProducts() {
   const t = useTranslations();
@@ -12,17 +14,17 @@ export default function HomeProducts() {
 
   const {
     data: products = [],
-    isPending,
+    isPending
   } = useQuery<Products[]>({
     queryKey: ["home products", locale],
-    queryFn: () => getAllProducts(locale, 'show'),
-    staleTime: 1000 * 60 * 5,
+    queryFn: () => getAllProducts(locale, "show"),
+    staleTime: 1000 * 60 * 5
   });
 
   // Skeleton Loader Animation
   if (isPending) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 w-4/5 mx-auto md:w-full gap-y-3">
+      <div className="mx-auto grid w-4/5 grid-cols-1 gap-y-3 md:w-full md:grid-cols-3">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -59,7 +61,7 @@ export default function HomeProducts() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 w-4/5 mx-auto md:w-full md:grid-cols-3 gap-10 mb-20">
+      <div className="mx-auto mb-20 grid w-4/5 grid-cols-1 gap-10 md:w-full md:grid-cols-3">
         {products.slice(0, 3).map((item) => (
           <motion.div
             key={item._id}

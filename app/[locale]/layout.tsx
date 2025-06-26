@@ -1,20 +1,21 @@
-import Providers from "@/utils/providers";
-import { routing } from "@/i18n/routing";
-import { setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
 import { Inter, Roboto } from "next/font/google";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
+
+import { routing } from "@/i18n/routing";
 import { cn } from "@/utils/lib/utils";
+import Providers from "@/utils/providers";
 
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-inter",
+  variable: "--font-inter"
 });
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
-  variable: "--font-roboto",
+  variable: "--font-roboto"
 });
 
 // export function generateStaticParams() {
@@ -23,7 +24,7 @@ const roboto = Roboto({
 
 export default function LocaleLayout({
   params: { locale },
-  children,
+  children
 }: LayoutProps) {
   if (!routing.locales.includes(locale)) notFound();
 

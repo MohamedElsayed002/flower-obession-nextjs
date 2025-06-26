@@ -1,32 +1,33 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useUserStore } from "@/store/userStore";
-import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { userUpdateUser } from "@/hooks";
+import { useUserStore } from "@/store/userStore";
 
 // Schema generator function using translations
 const getSchema = (t: ReturnType<typeof useTranslations>) =>
   z.object({
     name: z.string().min(3, {
-      message: t("name-must-be-at-least-3-characters"),
+      message: t("name-must-be-at-least-3-characters")
     }),
     phone: z.string().min(10, {
-      message: t("phone-must-be-at-least-10-digits"),
-    }),
+      message: t("phone-must-be-at-least-10-digits")
+    })
   });
 
 export default function ProfileForm() {
@@ -42,8 +43,8 @@ export default function ProfileForm() {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: user?.name || "",
-      phone: user?.phone || "",
-    },
+      phone: user?.phone || ""
+    }
   });
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
@@ -53,11 +54,11 @@ export default function ProfileForm() {
 
   return (
     <>
-      <h1 className="text-2xl text-center font-bold">{t("user-information")}</h1>
+      <h1 className="text-center text-2xl font-bold">{t("user-information")}</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10"
+          className="my-10 grid grid-cols-1 gap-5 md:grid-cols-2"
         >
           <div>
             <FormField

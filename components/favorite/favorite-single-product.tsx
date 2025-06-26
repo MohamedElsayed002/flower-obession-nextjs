@@ -1,8 +1,9 @@
-import useFavoriteButton from "@/hooks";
 import { Loader, X } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+
+import useFavoriteButton from "@/hooks";
 
 export function FavoriteSingleProduct({ item }: { item: Products }) {
   // Mutate
@@ -24,11 +25,11 @@ export function FavoriteSingleProduct({ item }: { item: Products }) {
           height={400}
         />
       </Link>
-      <div className="absolute top-5 ltr:right-14 rtl:right-10 md:right-8">
+      <div className="absolute top-5 md:right-8 ltr:right-14 rtl:right-10">
         <div
           aria-label={t("add-remove-from-favorite")}
           onClick={() => FavoriteButtonMutate(item._id)}
-          className="w-10 h-10 rounded-full bg-custom-yellow-2 flex justify-center items-center text-white cursor-pointer"
+          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-custom-yellow-2 text-white"
         >
           {isFavoriteButtonLoading ? <Loader className="animate-spin" /> : <X />}
         </div>

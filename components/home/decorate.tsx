@@ -1,21 +1,21 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 
 export default function HomeSection() {
   const t = useTranslations();
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-start md:items-center px-4 pt-10">
+    <div className="grid min-h-screen grid-cols-1 items-start gap-4 px-4 pt-10 md:grid-cols-2 md:items-center md:gap-10">
       {/* Image Section */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="relative w-full max-w-[600px] mx-auto"
+        className="relative mx-auto w-full max-w-[600px]"
       >
         <div className="w-full">
           <Image
@@ -23,10 +23,10 @@ export default function HomeSection() {
             width={900}
             height={500}
             alt="Image home"
-            className="w-full h-auto object-cover rounded-lg"
+            className="h-auto w-full rounded-lg object-cover"
           />
         </div>
-        <div className="absolute w-28 h-28 border-2 border-[#FF8181] rounded-full -right-4 -bottom-8 -z-[10] animate-float" />
+        <div className="animate-float absolute -bottom-8 -right-4 -z-[10] h-28 w-28 rounded-full border-2 border-[#FF8181]" />
       </motion.div>
 
       {/* Text Section */}
@@ -35,13 +35,13 @@ export default function HomeSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         viewport={{ once: true }}
-        className="relative w-full -mt-48 md:mt-2 max-w-[600px] mx-auto"
+        className="relative mx-auto -mt-48 w-full max-w-[600px] md:mt-2"
       >
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-custom-brown text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight"
+          className="text-3xl font-semibold leading-tight text-custom-brown sm:text-4xl md:text-5xl"
         >
           {t("we-decorate-your")} <br /> {t("events-you-just-enjoy")}
         </motion.h1>
@@ -50,7 +50,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-4 text-base sm:text-lg text-custom-brown-2"
+          className="mt-4 text-base text-custom-brown-2 sm:text-lg"
         >
           {t("decoration-description")}
         </motion.p>
@@ -66,7 +66,7 @@ export default function HomeSection() {
             width={300}
             height={300}
             alt="flowers image"
-            className="hidden md:block md:absolute right-0 md:top-28 rotate-90 -z-[10] -rotate-90 w-[150px] h-auto md:w-[300px]"
+            className="right-0 -z-[10] hidden h-auto w-[150px] -rotate-90 rotate-90 md:absolute md:top-28 md:block md:w-[300px]"
           />
         </motion.div>
       </motion.div>

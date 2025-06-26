@@ -1,12 +1,13 @@
+import { Slash } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-    BreadcrumbSeparator,
+    BreadcrumbSeparator
 } from "@/components/ui/breadcrumb"
-import { Slash } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
 
 export default function BreadCrumbProduct({title} : {title: string}) {
     const t = useTranslations();

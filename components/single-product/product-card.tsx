@@ -1,21 +1,22 @@
 "use client";
 
+import { Heart, Loader } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useLocale } from "next-intl";
+import { useEffect, useState } from "react";
+
 import {
   HoverCard,
   HoverCardContent,
-  HoverCardTrigger,
+  HoverCardTrigger
 } from "@/components/ui/hover-card";
 import {
   Popover,
-  PopoverTrigger,
   PopoverContent,
+  PopoverTrigger
 } from "@/components/ui/popover";
-import { Heart, Loader } from "lucide-react";
-import Link from "next/link";
-import { useLocale } from "next-intl";
 import useFavoriteButton from "@/hooks";
-import { useEffect, useState } from "react";
 
 type ProductCardProps = {
   product: Products;
@@ -37,8 +38,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
   }, []);
 
   const trigger = (
-    <div className="w-14 h-14 rounded-full bg-gray-400 shadow-lg flex items-center justify-center cursor-pointer">
-      <div className="w-8 h-8 rounded-full bg-white" />
+    <div className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-gray-400 shadow-lg">
+      <div className="h-8 w-8 rounded-full bg-white" />
     </div>
   );
 
@@ -55,16 +56,16 @@ export default function ProductCard({ product, index }: ProductCardProps) {
           alt={product.details[0].title}
           width={400}
           height={600}
-          className="w-full h-auto object-cover rounded-2xl"
+          className="h-auto w-full rounded-2xl object-cover"
         />
       </Link>
 
       {/* Floating Price Tag */}
-      <div className="absolute top-4 right-4 z-20">
+      <div className="absolute right-4 top-4 z-20">
         {isTouchDevice ? (
           <Popover>
             <PopoverTrigger>{trigger}</PopoverTrigger>
-            <PopoverContent className="z-50 bg-white p-3 rounded-lg shadow-xl">
+            <PopoverContent className="z-50 rounded-lg bg-white p-3 shadow-xl">
               <h3 className="text-lg font-bold">
                 {product.details[0].title}
               </h3>
@@ -74,7 +75,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         ) : (
           <HoverCard>
             <HoverCardTrigger>{trigger}</HoverCardTrigger>
-            <HoverCardContent className="z-50 bg-white p-3 rounded-lg shadow-xl">
+            <HoverCardContent className="z-50 rounded-lg bg-white p-3 shadow-xl">
               <h3 className="text-lg font-bold">
                 {product.details[0].title}
               </h3>
@@ -87,7 +88,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       {/* Favorite Button */}
       <div
         onClick={() => FavoriteButtonMutate(product._id)}
-        className="absolute bottom-10 right-4 z-20 w-14 h-14 bg-gray-400 rounded-full flex justify-center items-center"
+        className="absolute bottom-10 right-4 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-gray-400"
       >
         {isFavoriteButtonLoading ? (
           <Loader className="animate-spin" />

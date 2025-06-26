@@ -1,9 +1,11 @@
+import { Minus, Plus, X } from "lucide-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+
 import { TableCell, TableRow } from "@/components/ui/table";
 import { useRemoveProduct, useUpdateCart } from "@/hooks";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
+
 import { Button } from "../ui/button";
-import { Minus, Plus, X } from "lucide-react";
 
 export function SingleProductRow({ item }: { item: CartItem }) {
   // Translation
@@ -26,11 +28,11 @@ export function SingleProductRow({ item }: { item: CartItem }) {
       <TableCell>
         <div>
           {/* Product Details */}
-          <h1 className="text-custom-brown text-xl">{item.product.details[0].title}</h1>
+          <h1 className="text-xl text-custom-brown">{item.product.details[0].title}</h1>
           <h2 className="text-sm text-custom-brown-2">
             {t("category")}: {item.product.category}
           </h2>
-          <h2 className="font-bold text-xl text-custom-brown">
+          <h2 className="text-xl font-bold text-custom-brown">
             {t("price")}: ${item.product.price}
           </h2>
         </div>
@@ -39,7 +41,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
         <div className="flex flex-row gap-2">
           {/* Quantity */}
           <Button
-          aria-label={t('decrease-quantity')}
+          aria-label={t("decrease-quantity")}
             disabled={updateProductQuantityPending || item.quantity === 1}
             variant="outline"
             className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
@@ -49,11 +51,11 @@ export function SingleProductRow({ item }: { item: CartItem }) {
           >
             <Minus />
           </Button>
-          <span className="text-custom-yellow-2 bg-custom-brown p-2 rounded-full">
+          <span className="rounded-full bg-custom-brown p-2 text-custom-yellow-2">
             {item.quantity}
           </span>
           <Button
-          aria-label={t('increase-quantity')}
+          aria-label={t("increase-quantity")}
             disabled={updateProductQuantityPending}
             variant="outline"
             className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
@@ -71,7 +73,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
       <TableCell>
         {/* Action */}
         <Button
-          aria-label={t('remove-product')}
+          aria-label={t("remove-product")}
           disabled={isPending}
           onClick={() => mutate({ productId: item.product._id })}
           className="bg-custom-yellow-2 text-black hover:bg-custom-yellow-2"

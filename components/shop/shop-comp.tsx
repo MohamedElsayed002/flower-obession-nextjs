@@ -1,16 +1,18 @@
 "use client";
 
-import { ProductSkeleton } from "@/components/skeletons/product-skeleton";
-import { getShopProducts } from "@/utils/actions";
 import { useQuery } from "@tanstack/react-query";
-import { useLocale, useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import SearchProduct from "./search-form";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
+import { ProductSkeleton } from "@/components/skeletons/product-skeleton";
+import { getShopProducts } from "@/utils/actions";
+
+import SearchProduct from "./search-form";
 
 export default function ShopComp() {
   const searchParams = useSearchParams();
@@ -28,11 +30,11 @@ export default function ShopComp() {
   const {
     data: products = [],
     isPending,
-    error,
+    error
   } = useQuery({
     queryKey: ["shop products", locale, debouncedSearch],
     queryFn: () => getShopProducts(locale, debouncedSearch),
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5
   });
 
   const handleSearch = useDebouncedCallback((value: string) => {
@@ -53,7 +55,7 @@ export default function ShopComp() {
 
   if (isPending) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 w-4/5  md:w-full gap-y-3">
+      <div className="grid w-4/5 grid-cols-1 gap-y-3  md:w-full md:grid-cols-3">
         <ProductSkeleton />
         <ProductSkeleton />
         <ProductSkeleton />
@@ -63,7 +65,7 @@ export default function ShopComp() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="flex min-h-screen items-center justify-center">
         <h1 className="text-4xl font-bold">{error.message}</h1>
       </div>
     );
@@ -71,9 +73,9 @@ export default function ShopComp() {
 
   return (
     <div className="mb-10">
-      <div className="flex justify-between flex-col md:items-center md:flex-row mb-20 md:mb-0 gap-y-10">
-        <div className="relative w-fit z-50">
-          <h1 className="absolute inset-0 flex items-center text-start justify-center text-4xl text-custom-brown font-bold">
+      <div className="mb-20 flex flex-col justify-between gap-y-10 md:mb-0 md:flex-row md:items-center">
+        <div className="relative z-50 w-fit">
+          <h1 className="absolute inset-0 flex items-center justify-center text-start text-4xl font-bold text-custom-brown">
             {t("shop")}
           </h1>
           <Image src="/shape-4.png" alt="Image Shop" width={200} height={200} />
@@ -85,7 +87,7 @@ export default function ShopComp() {
         />
         <div />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 -mt-10 items-center place-items-center">
+      <div className="-mt-10 grid grid-cols-1 place-items-center items-center gap-5 md:grid-cols-3">
         {products.length === 0 ? (
           <p className="col-span-3 text-center text-lg">{t("no_products_found")}</p>
         ) : (
@@ -100,7 +102,7 @@ export default function ShopComp() {
                 <div className="overflow-hidden">
                   <Link href={`/${locale}/shop/${item.details[0].slug}`}>
                     <Image
-                      className="hover:scale-150 transition-transform duration-300 ease-in-out"
+                      className="transition-transform duration-300 ease-in-out hover:scale-150"
                       src={item.image}
                       alt={item.details[0].title}
                       width={400}
@@ -110,7 +112,7 @@ export default function ShopComp() {
                 </div>
                 <div>
                   <h1 className="font-bold">{item.details[0].title}</h1>
-                  <p className="text-custom-brown-2 font-bold">${item.price}</p>
+                  <p className="font-bold text-custom-brown-2">${item.price}</p>
                 </div>
               </div>
             </motion.div>

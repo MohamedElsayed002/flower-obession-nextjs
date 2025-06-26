@@ -1,5 +1,6 @@
 "use client"
 import Lottie from "lottie-react";
+
 import animationData from "@/public/assets/animate.json";
 
 export default function CheckoutAnimation() {

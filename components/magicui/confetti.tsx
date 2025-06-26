@@ -1,9 +1,9 @@
 "use client";
 
 import type {
-  GlobalOptions as ConfettiGlobalOptions,
   CreateTypes as ConfettiInstance,
-  Options as ConfettiOptions,
+  GlobalOptions as ConfettiGlobalOptions,
+  Options as ConfettiOptions
 } from "canvas-confetti";
 import confetti from "canvas-confetti";
 import type { ReactNode } from "react";
@@ -14,7 +14,7 @@ import React, {
   useEffect,
   useImperativeHandle,
   useMemo,
-  useRef,
+  useRef
 } from "react";
 
 import { Button, ButtonProps } from "@/components/ui/button";
@@ -51,7 +51,7 @@ const ConfettiComponent = forwardRef<ConfettiRef, Props>((props, ref) => {
         if (instanceRef.current) return;
         instanceRef.current = confetti.create(node, {
           ...globalOptions,
-          resize: true,
+          resize: true
         });
       } else {
         if (instanceRef.current) {
@@ -60,7 +60,7 @@ const ConfettiComponent = forwardRef<ConfettiRef, Props>((props, ref) => {
         }
       }
     },
-    [globalOptions],
+    [globalOptions]
   );
 
   const fire = useCallback(
@@ -71,14 +71,14 @@ const ConfettiComponent = forwardRef<ConfettiRef, Props>((props, ref) => {
         console.error("Confetti error:", error);
       }
     },
-    [options],
+    [options]
   );
 
   const api = useMemo(
     () => ({
-      fire,
+      fire
     }),
-    [fire],
+    [fire]
   );
 
   useImperativeHandle(ref, () => api, [api]);
@@ -129,8 +129,8 @@ const ConfettiButtonComponent = ({
         ...options,
         origin: {
           x: x / window.innerWidth,
-          y: y / window.innerHeight,
-        },
+          y: y / window.innerHeight
+        }
       });
     } catch (error) {
       console.error("Confetti button error:", error);

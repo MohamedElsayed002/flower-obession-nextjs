@@ -1,5 +1,5 @@
-import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function EmptyCart() {
 
@@ -12,10 +12,10 @@ export default function EmptyCart() {
   return (
     <div>
       {/* Title */}
-      <h1 className="text-3xl mb-5">{t("no-products-available-0")}</h1>
+      <h1 className="mb-5 text-3xl">{t("no-products-available-0")}</h1>
       <Link
         aria-label={t("go-shopping")}
-        className="mt-4 bg-custom-brown hover:bg-custom-brown/80 py-3 px-5 text-white rounded-md"
+        className="mt-4 rounded-md bg-custom-brown px-5 py-3 text-white hover:bg-custom-brown/80"
         href={`/${locale}/shop`}
       >
         {t("go-shopping")}

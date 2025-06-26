@@ -1,3 +1,40 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "root": true,
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "plugins": ["unused-imports", "simple-import-sort", "tailwindcss"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "rules": {
+    // Possible Errors
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-debugger": "error",
+
+    // Best Practices
+    "eqeqeq": ["error", "always"],
+
+    // Stylistic
+    "semi": "off",
+    "quotes": ["error", "double"],
+    "comma-dangle": ["error", "never"],
+
+    // Import Sorting
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+
+    // Unused imports
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
+
+    // Next.js specific
+    "@next/next/no-img-element": "off",
+
+    // TailwindCSS plugin
+    "tailwindcss/classnames-order": "warn"
+  }
 }

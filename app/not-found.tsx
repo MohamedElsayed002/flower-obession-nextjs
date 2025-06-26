@@ -5,9 +5,9 @@ export default function NotFound() {
   return (
     <html>
       <body>
-        <main className="min-h-screen grid place-items-center items-center">
+        <main className="grid min-h-screen place-items-center items-center">
           {/* Message */}
-          <h1 className="text-4xl text-red-500 font-bold">
+          <h1 className="text-4xl font-bold text-red-500">
             This page was not found 😔
           </h1>
 

@@ -1,14 +1,14 @@
-'use client';
-import { useTranslations } from 'next-intl';
+"use client";
+import { useTranslations } from "next-intl";
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
   CartesianGrid,
-  Tooltip,
   ResponsiveContainer,
-} from 'recharts';
+  Tooltip,
+  XAxis,
+  YAxis
+} from "recharts";
 
 type ChartPropsType = {
   data: {
@@ -23,7 +23,7 @@ function Chart({ data }: ChartPropsType) {
 
   return (
     <section className='mt-24'>
-      <h1 className='text-4xl font-semibold text-center text-custom-brown'>{t('monthly-orders')}</h1>
+      <h1 className='text-center text-4xl font-semibold text-custom-brown'>{t("monthly-orders")}</h1>
       <ResponsiveContainer width='100%' height={300}>
         <BarChart data={data} margin={{ top: 50 }}>
           <CartesianGrid strokeDasharray='3 3' />

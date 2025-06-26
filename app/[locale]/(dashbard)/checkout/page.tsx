@@ -1,14 +1,15 @@
-import CheckoutForm from "@/components/checkout/checkout-form";
-import CheckoutAnimation from "@/components/checkout/checkout-animation";
-import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
+import CheckoutAnimation from "@/components/checkout/checkout-animation";
+import CheckoutForm from "@/components/checkout/checkout-form";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
 
   return {
     title: t("checkout-title"),
-    description: t("checkout-description"),
+    description: t("checkout-description")
   };
 }
 

@@ -1,13 +1,14 @@
-import InspirationComp from "@/components/inspiration/inspiration-products";
-import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
+import InspirationComp from "@/components/inspiration/inspiration-products";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
 
   return {
     title: t("inspiration-title"),
-    description: t("inspiration-description"),
+    description: t("inspiration-description")
   };
 }
 

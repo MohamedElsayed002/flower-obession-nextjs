@@ -1,12 +1,13 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useTranslations } from "next-intl";
 
 export function NewsLetterEmail() {
   // Translation
@@ -19,14 +20,14 @@ export function NewsLetterEmail() {
       .trim()
       .min(1, { message: t("email-required") }) // Ensure it's not empty
       .email({ message: t("email-invalid") }) // Validate email format
-      .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { message: t("email-invalid") }), // Extra check
+      .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { message: t("email-invalid") }) // Extra check
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-    },
+      email: ""
+    }
   });
 
   // Function
@@ -38,7 +39,7 @@ export function NewsLetterEmail() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="text-end flex items-center w-full max-w-md"
+        className="flex w-full max-w-md items-center text-end"
       >
         {/* Input Field */}
         <FormField
@@ -54,11 +55,11 @@ export function NewsLetterEmail() {
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-red-400 text-sm" />
+              <FormMessage className="text-sm text-red-400" />
               <Button
                 aria-label={t("subscribe")}
                 type="submit"
-                className="px-6 bg-[#1B2A34] text-white font-medium rounded-full hover:bg-gray-700 shadow-md"
+                className="rounded-full bg-[#1B2A34] px-6 font-medium text-white shadow-md hover:bg-gray-700"
               >
                 {t("subscribe")}
               </Button>

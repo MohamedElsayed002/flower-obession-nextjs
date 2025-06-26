@@ -1,7 +1,9 @@
-import { redirect } from "next/navigation";
-import { getUserOrder } from "@/utils/actions";
-import { OrdersResponse } from "@/utils/types/orders";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { getLocale,getTranslations } from "next-intl/server";
+
+import EmptyCart from "@/components/common/empty-cart";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -9,18 +11,17 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
+  TableRow
 } from "@/components/ui/table";
-import EmptyCart from "@/components/common/empty-cart";
-import { getTranslations, getLocale } from "next-intl/server";
-import { Badge } from "@/components/ui/badge";
+import { getUserOrder } from "@/utils/actions";
+import { OrdersResponse } from "@/utils/types/orders";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
 
   return {
     title: t("orders"),
-    description: t("orders-description"),
+    description: t("orders-description")
   };
 }
 
@@ -68,7 +69,7 @@ export default async function OrdersPage() {
                   <Badge
                     className={`${
                       item.isPaid ? "bg-green-500" : "bg-red-500"
-                    } text-white p-2 rounded-md`}
+                    } rounded-md p-2 text-white`}
                   >
                     {item.isPaid ? t("paid") : t("not-paid")}
                   </Badge>

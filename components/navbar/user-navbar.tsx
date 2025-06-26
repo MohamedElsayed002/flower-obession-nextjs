@@ -1,18 +1,20 @@
 "use client";
-import { User } from "@/utils/types/user";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { toast } from "sonner";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { Button } from "../ui/button";
 import { removeCookiesFromHeader } from "@/utils/actions";
-import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
-import { toast } from "sonner";
+import { User } from "@/utils/types/user";
+
+import { Button } from "../ui/button";
 
 export function UserNavbar({ user, clearUser }: { user: User; clearUser: () => void }) {
   const t = useTranslations();
@@ -28,35 +30,35 @@ export function UserNavbar({ user, clearUser }: { user: User; clearUser: () => v
   return (
     <DropdownMenu dir={locale === "ar" ? "rtl" : "ltr"}>
       <DropdownMenuTrigger asChild>
-        <Button className="bg-custom-brown hover:bg-custom-brown/80 outline-none">
+        <Button className="bg-custom-brown outline-none hover:bg-custom-brown/80">
           {t("hello-0")} {user?.name} 👋
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         {user.role === "Admin" && (
           <DropdownMenuItem>
-            <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/admin`}>
+            <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/admin`}>
               {t("Admin")}
             </Link>
           </DropdownMenuItem>
         )}
         <DropdownMenuItem>
-          <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/cart`}>
+          <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/cart`}>
             {t("cart")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/favorite`}>
+          <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/favorite`}>
             {t("favorite")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/orders`}>
+          <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/orders`}>
             {t("orders")}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link className="p-2 hover:bg-gray-100 rounded-md w-full " href={`/${locale}/profile`}>
+          <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/profile`}>
             {t("profile")}
           </Link>
         </DropdownMenuItem>

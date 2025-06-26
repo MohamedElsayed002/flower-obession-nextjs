@@ -1,7 +1,10 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -10,10 +13,8 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from "@/components/ui/select";
-import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
 import useRegister from "@/hooks/auth/use-register";
 
 export default function RegisterPage() {
@@ -44,7 +45,7 @@ export default function RegisterPage() {
         .regex(/[a-z]/, { message: t("password-must-contain-at-least-one-lowercase-letter") })
         .regex(/[0-9]/, { message: t("password-must-contain-at-least-one-number") })
         .regex(/[!@#$%^&*()_]/, {
-          message: t("password-must-contain-at-least-one-special-character-and"),
+          message: t("password-must-contain-at-least-one-special-character-and")
         }),
 
       rePassword: z.string().trim(),
@@ -56,11 +57,11 @@ export default function RegisterPage() {
         .trim()
         .min(10, { message: t("phone-must-be-at-least-10-digits") })
         .max(15, { message: t("phone-must-not-exceed-15-digits") })
-        .regex(/^\+?\d+$/, { message: t("phone-must-contain-only-numbers") }),
+        .regex(/^\+?\d+$/, { message: t("phone-must-contain-only-numbers") })
     })
     .refine((data) => data.password === data.rePassword, {
       message: t("passwords-do-not-match"),
-      path: ["rePassword"], // Attach error to rePassword field
+      path: ["rePassword"] // Attach error to rePassword field
     });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -71,8 +72,8 @@ export default function RegisterPage() {
       gender: "Male",
       email: "",
       password: "",
-      rePassword: "",
-    },
+      rePassword: ""
+    }
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -82,19 +83,19 @@ export default function RegisterPage() {
         email: values.email,
         password: values.password,
         phone: values.phone,
-        gender: values.gender,
+        gender: values.gender
       },
       {
         onSuccess: () => {
           window.location.href = `/${locale}/login`;
-        },
+        }
       }
     );
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-96">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-96 space-y-4">
         <h1 className="text-4xl text-custom-brown">{t("register")}</h1>
         <FormField
           control={form.control}
@@ -102,7 +103,13 @@ export default function RegisterPage() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input disabled={isPending} placeholder={t("enter your name")} {...field} />
+                <Input
+                  autoFocus
+                  aria-label="Enter your name"
+                  disabled={isPending}
+                  placeholder={t("enter your name")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -115,6 +122,7 @@ export default function RegisterPage() {
             <FormItem>
               <FormControl>
                 <Input
+                  aria-label="Enter your email"
                   disabled={isPending}
                   placeholder={t("enter-your-email-address")}
                   {...field}
@@ -130,7 +138,12 @@ export default function RegisterPage() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input disabled={isPending} placeholder={t("enter your phone number")} {...field} />
+                <Input
+                  aria-label="enter your phone number"
+                  disabled={isPending}
+                  placeholder={t("enter your phone number")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -141,68 +154,102 @@ export default function RegisterPage() {
           name="gender"
           render={({ field }) => (
             <FormItem>
+              {/* Visible label for screen readers */}
+              <label id="gender-label" className="sr-only">
+                {t("gender")}
+              </label>
+
               <FormControl>
                 <Select
                   disabled={isPending}
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  aria-labelledby="gender-label"
                 >
-                  <SelectTrigger dir={locale === "en" ? "ltr" : "rtl"}>
+                  <SelectTrigger
+                    dir={locale === "en" ? "ltr" : "rtl"}
+                    aria-describedby="gender-description"
+                  >
                     <SelectValue placeholder={t("gender")} />
                   </SelectTrigger>
+
                   <SelectContent dir={locale === "en" ? "ltr" : "rtl"}>
                     <SelectItem value="Male">{t("male")}</SelectItem>
                     <SelectItem value="Female">{t("female")}</SelectItem>
                   </SelectContent>
                 </Select>
               </FormControl>
+
+              <span id="gender-description" className="sr-only">
+                {t("select_gender_description")}{" "}
+              </span>
+
               <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem>
+              {/* Label — can be visually hidden */}
+              <label htmlFor="password" className="sr-only">
+                {t("password")}
+              </label>
+
               <FormControl>
                 <Input
+                  id="password"
                   disabled={isPending}
                   type="password"
                   placeholder={t("enter-your-password")}
                   {...field}
                 />
               </FormControl>
+
               <FormMessage />
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="rePassword"
           render={({ field }) => (
             <FormItem>
+              <label htmlFor="rePassword" className="sr-only">
+                {t("confirm-password")}
+              </label>
+
               <FormControl>
                 <Input
+                  id="rePassword"
                   disabled={isPending}
                   type="password"
-                  placeholder={t("confirm your password")}
+                  placeholder={t("confirm-your-password")}
                   {...field}
                 />
               </FormControl>
+
               <FormMessage />
             </FormItem>
           )}
         />
-        <p className="text-red-500 text-sm">{error?.message}</p>
+
+        <p id="password-error" className="text-sm text-red-500" role="alert">
+          {error?.message}
+        </p>
+
         <Button
-          aria-label={t("submit")}
           disabled={isPending}
           className="w-full bg-custom-brown hover:bg-custom-brown/80"
           type="submit"
         >
           {t("submit")}
         </Button>
+
         <div className="flex gap-2">
           <p>{t("already-have-an-account")}</p>
           <Link className="hover:underline" href={`/${locale}/login`}>

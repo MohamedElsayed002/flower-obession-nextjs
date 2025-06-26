@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Error({
   error,
-  reset,
+  reset
 }: {
   error: Error & { digest?: string };
   reset: () => void;
@@ -12,9 +12,9 @@ export default function Error({
   return (
     <html>
       <body>
-        <main className="min-h-screen grid place-items-center">
+        <main className="grid min-h-screen place-items-center">
           {/* Headline */}
-          <h1 className="text-red-500 text-5xl font-bold">Error</h1>
+          <h1 className="text-5xl font-bold text-red-500">Error</h1>
 
           {/* Message */}
           <p className="mt-4 ">{error.message}</p>

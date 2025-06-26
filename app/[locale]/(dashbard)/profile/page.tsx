@@ -1,5 +1,6 @@
-import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
 import ProfileForm from "@/components/profile/profile-form";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -7,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: t("profile"),
-    description: t("profile-description"),
+    description: t("profile-description")
   };
 }
 

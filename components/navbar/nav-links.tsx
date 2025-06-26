@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLocale,useTranslations } from "next-intl";
+
 import { LinksType } from "@/utils/types";
-import { useTranslations, useLocale } from "next-intl";
 
 export const NavLinks: LinksType[] = [
   { id: 1, name: "home", href: "/" },
@@ -21,7 +22,7 @@ export const NavLinksComponent = () => {
   const t = useTranslations("navigation");
 
   return (
-    <div className="flex items-center mt-2 gap-5 rtl:text-start">
+    <div className="mt-2 flex items-center gap-5 rtl:text-start">
       {NavLinks.map((link) => {
         // Check if the user exists before rendering the "cart" and "favorite" links
         if ((link.name === "cart" || link.name === "favorite" || link.name === "orders" || link.name === "profile") ) {
@@ -31,8 +32,8 @@ export const NavLinksComponent = () => {
         return (
           <Link
             key={link.id}
-            className={`uppercase text-gray-500 text-lg ${
-              pathname === `/${locale}${link.href}` && "text-black font-bold"
+            className={`text-lg uppercase text-gray-500 ${
+              pathname === `/${locale}${link.href}` && "font-bold text-black"
             }`}
             href={`/${locale}${link.href}`}
           >

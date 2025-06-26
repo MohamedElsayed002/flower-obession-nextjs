@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp } from 'lucide-react'; 
-import { useTranslations } from 'next-intl';
+import { AnimatePresence,motion } from "framer-motion";
+import { ArrowUp } from "lucide-react"; 
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,14 +17,14 @@ const ScrollToTopButton = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth"
     });
   };
 
@@ -32,15 +32,15 @@ const ScrollToTopButton = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          aria-label={t('scroll-to-top')}
+          aria-label={t("scroll-to-top")}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 p-3 bg-custom-brown text-white rounded-full shadow-lg z-50 hover:bg-custom-brown/80"
+          className="fixed bottom-6 right-6 z-50 rounded-full bg-custom-brown p-3 text-white shadow-lg hover:bg-custom-brown/80"
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="h-5 w-5" />
         </motion.button>
       )}
     </AnimatePresence>

@@ -1,14 +1,16 @@
 "use client";
+import { Loader } from "lucide-react";
 import Image from "next/image";
-import { NavLinksComponent } from "./nav-links";
-import { Button } from "../ui/button";
-import { DropdownNavbar } from "./dropdown-navbar";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import LocaleToggle from "../common/toggle-locale";
+
 import { useUserStore } from "@/store/userStore";
+
+import LocaleToggle from "../common/toggle-locale";
+import { Button } from "../ui/button";
+import { DropdownNavbar } from "./dropdown-navbar";
+import { NavLinksComponent } from "./nav-links";
 import { UserNavbar } from "./user-navbar";
-import { Loader } from "lucide-react";
 
 export function Navbar() {
   // Translation & Locale
@@ -17,7 +19,7 @@ export function Navbar() {
   const { user, loading, clearUser } = useUserStore(); // Add `loading`
 
   return (
-    <nav className="container flex justify-between items-center my-5">
+    <nav className="container my-5 flex items-center justify-between">
       {/* Logo (Clickable, Links to Home) */}
       {locale === "en" ? (
         <Link href="/" aria-label="Home">
@@ -31,7 +33,7 @@ export function Navbar() {
       )}
       
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center space-x-6">
+      <div className="hidden items-center space-x-6 md:flex">
         <NavLinksComponent />
       </div>
 
@@ -41,14 +43,14 @@ export function Navbar() {
 
         {/* Show Nothing When Loading */}
         {loading ? <Loader className="animate-spin" /> : user ? <UserNavbar user={user} clearUser={clearUser} /> : (
-          <Button className="border border-yellow-700 hover:opacity-80 uppercase" variant="ghost" asChild>
-            <Link href={`/${locale}/login`}>{t('login-register-0')}</Link>
+          <Button className="border border-yellow-700 uppercase hover:opacity-80" variant="ghost" asChild>
+            <Link href={`/${locale}/login`}>{t("login-register-0")}</Link>
           </Button>
         )}
       </div>
 
       {/* Mobile Dropdown */}
-      <div className="flex gap-3 items-center md:hidden">
+      <div className="flex items-center gap-3 md:hidden">
         <LocaleToggle />
         <DropdownNavbar />
       </div>
