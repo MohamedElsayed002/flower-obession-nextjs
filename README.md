@@ -53,8 +53,16 @@ Ensure you have the following installed:
    git clone https://github.com/MohamedElsayed002/flower-obession-nextjs.git
    cd flower-obession-nextjs
    ```
+   
+2. Create a .env file in the root directory and add the following variables:
+```env
 
-2. Install dependencies:
+API = https://florist-nestjs.vercel.app
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = ##
+STRIPE_SECRET_KEY = ##
+```
+
+3. Install dependencies:
 
    ```bash
    npm install
@@ -114,5 +122,6 @@ This project is licensed under the MIT License.
 
 For questions or support, contact the maintainer:
 
-- GitHub: MohamedElsayed002
-- LinkedIn: Mohamed Elsayed
+- [GitHub: MohamedElsayed002](https://github.com/MohamedElsayed002)
+- [LinkedIn: Mohamed Elsayed](https://www.linkedin.com/in/mohamedelsayed2002/)
+
