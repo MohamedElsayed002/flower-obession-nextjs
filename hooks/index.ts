@@ -1,6 +1,6 @@
 "use client"
 import { useUserStore } from "@/store/userStore";
-import { allOrders, createOrder, favoriteProduct, fetchAdminStats, fetchChartData, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
+import { allOrders, createOrder, favoriteProduct, fetchAdminStats, fetchChartData, fetchRevenueAnalytics, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
 import { OrderAdminResponse } from "@/utils/types/orders";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
@@ -8,34 +8,44 @@ import { toast } from "sonner";
 
 
 export const useFetchAdminStats = () => {
-    const { data , isPending , error} = useQuery<FetchAdminStats>({
+    const { data, isPending, error } = useQuery<FetchAdminStats>({
         queryKey: ['admin stats'],
         queryFn: () => fetchAdminStats()
     })
 
     return {
-        data,isPending,error
+        data, isPending, error
     }
 }
 
 export const useFetchChartData = () => {
-    const { data , isPending , error} = useQuery<DateCountResponse>({
+    const { data, isPending, error } = useQuery<DateCountResponse>({
         queryKey: ['chart data'],
         queryFn: () => fetchChartData()
     })
     return {
-        data,isPending,error
+        data, isPending, error
+    }
+}
+
+export const useFetchRevenueAnalytics = () => {
+    const { data, isPending, error } = useQuery<RevenueAnalyticsResponse>({
+        queryKey: ['revenue analytics'],
+        queryFn: () => fetchRevenueAnalytics()
+    })
+    return {
+        data, isPending, error
     }
 }
 
 
-export const useGetAllOrders = ({page}: {page:number}) => {
+export const useGetAllOrders = ({ page }: { page: number }) => {
 
-    const {data, isPending , error} = useQuery<OrderAdminResponse>({
-        queryKey: ["allOrders",page],
-        queryFn: () => allOrders({page})
+    const { data, isPending, error } = useQuery<OrderAdminResponse>({
+        queryKey: ["allOrders", page],
+        queryFn: () => allOrders({ page })
     })
-    
+
     return {
         data,
         isPending,
@@ -133,10 +143,10 @@ export const useOrderStripe = () => {
 
     const locale = useLocale()
 
-    const {mutate,isPending,error} = useMutation({
+    const { mutate, isPending, error } = useMutation({
         mutationKey: ["order"],
         mutationFn: async () => {
-            const result = await orderStripe({lang:locale})
+            const result = await orderStripe({ lang: locale })
             return result
         },
         onSuccess: (data) => {
@@ -157,7 +167,7 @@ export const useOrderStripe = () => {
 
 export const userUpdateUser = () => {
     const queryClient = useQueryClient();
-    const { user,setUser } = useUserStore();
+    const { user, setUser } = useUserStore();
     const t = useTranslations()
     const { mutate } = useMutation({
         mutationKey: ["user"],

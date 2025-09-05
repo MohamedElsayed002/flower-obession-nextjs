@@ -57,12 +57,12 @@ export async function getAllProducts(lang: string = "en", category: string) {
 
 
 
-export async function getShopProducts(lang: string = "en",search?:string) {
+export async function getShopProducts(lang: string = "en", search?: string) {
   const params = new URLSearchParams()
-  params.set("lang",lang)
+  params.set("lang", lang)
 
-  if(search) {
-    params.append("search",search)
+  if (search) {
+    params.append("search", search)
   }
 
   const response = await fetch(
@@ -298,7 +298,7 @@ export async function createOrder({ street, city, phone }: { street: string, cit
     }
   )
   const data = await response.json()
-  
+
   if (!response.ok || data.statusCode === 401) {
     throw new Error(data.message || "Failed to update quantity");
   }
@@ -306,7 +306,7 @@ export async function createOrder({ street, city, phone }: { street: string, cit
   return data
 }
 
-export async function updateUser({userId,name,phone}:{userId:string,name:string,phone:string}) {
+export async function updateUser({ userId, name, phone }: { userId: string, name: string, phone: string }) {
   const accessToken = cookies().get("access_token")?.value;
 
   const response = await fetch(
@@ -321,7 +321,7 @@ export async function updateUser({userId,name,phone}:{userId:string,name:string,
     }
   )
   const data = await response.json()
-  
+
   if (!response.ok || data.statusCode === 401) {
     throw new Error(data.message || "Failed to update quantity");
   }
@@ -329,17 +329,17 @@ export async function updateUser({userId,name,phone}:{userId:string,name:string,
   return data
 }
 
-export async function orderStripe({lang} : {lang:string}) {
+export async function orderStripe({ lang }: { lang: string }) {
   const accessToken = cookies().get("access_token")?.value;
 
   const response = await fetch(
-    `${process.env.API}/order/add-stripe?lang=${lang}`,{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`
-      },
-    }
+    `${process.env.API}/order/add-stripe?lang=${lang}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    },
+  }
   )
 
   const data = await response.json()
@@ -349,17 +349,17 @@ export async function orderStripe({lang} : {lang:string}) {
   return data
 }
 
-export async function allOrders({page = 1}:{page:number}) {
+export async function allOrders({ page = 1 }: { page: number }) {
   const accessToken = cookies().get("access_token")?.value;
 
   const response = await fetch(
-    `${process.env.API}/order?page=${page}`,{
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`
-      },
-    }
+    `${process.env.API}/order?page=${page}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    },
+  }
   )
 
   const data = await response.json()
@@ -375,15 +375,15 @@ export async function fetchAdminStats() {
 
   const response = await fetch(
     `${process.env.API}/users/admin-stats`, {
-      headers: {
-        "Content-Type": "application/json",
-          authorization: `Bearer ${accessToken}`
-      }
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
     }
+  }
   )
 
   const data = await response.json()
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(data.message || "Failed to fetch admin stats")
   }
   return data
@@ -394,16 +394,35 @@ export async function fetchChartData() {
 
   const response = await fetch(
     `${process.env.API}/users/fetch-chart-data`, {
-      headers: {
-        "Content-Type": "application/json",
-          authorization: `Bearer ${accessToken}`
-      }
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
     }
+  }
   )
 
   const data = await response.json()
-  if(!response.ok) {
+  if (!response.ok) {
     throw new Error(data.message || "Failed to fetch Chart Data")
+  }
+  return data
+}
+
+export async function fetchRevenueAnalytics() {
+  const accessToken = cookies().get("access_token")?.value
+
+  const response = await fetch(
+    `${process.env.API}/users/revenue-analytics`, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    }
+  }
+  )
+
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to fetch Revenue Analytics")
   }
   return data
 }

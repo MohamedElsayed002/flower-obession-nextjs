@@ -25,7 +25,7 @@ export default function StatsContainer({adminStats} : {adminStats: FetchAdminSta
       <Card className="bg-muted">
         <CardHeader className="flex flex-row items-center justify-between">
           <h3 className="text-3xl font-bold capitalize text-custom-brown">{t("purchased")}</h3>
-          <span className="text-5xl font-extrabold text-primary">{adminStats?.orders}</span>
+          <span className="text-5xl font-extrabold text-primary">{adminStats?.totalOrders}</span>
         </CardHeader>
       </Card>
     </div>
