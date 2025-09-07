@@ -1,6 +1,6 @@
 "use client"
 import { useUserStore } from "@/store/userStore";
-import { allOrders, createOrder, favoriteProduct, fetchAdminStats, fetchChartData, fetchRevenueAnalytics, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
+import { allOrders, createOrder, favoriteProduct, fetchAdminStats, fetchChartData, fetchRevenueAnalytics, fetchProductAnalytics, fetchOperationalMetrics, fetchSeasonalAnalytics, fetchBusinessInsights, getUserCart, getUserFavorite, orderStripe, removeProductFromCart, updateQuantity, updateUser } from "@/utils/actions";
 import { OrderAdminResponse } from "@/utils/types/orders";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
@@ -37,6 +37,47 @@ export const useFetchRevenueAnalytics = () => {
         data, isPending, error
     }
 }
+
+export const useFetchProductAnalytics = () => {
+    const { data, isPending, error } = useQuery({
+        queryKey: ['product analytics'],
+        queryFn: () => fetchProductAnalytics()
+    })
+    return {
+        data, isPending, error
+    }
+}
+
+export const useFetchOperationalMetrics = () => {
+    const { data, isPending, error } = useQuery({
+        queryKey: ['operational metrics'],
+        queryFn: () => fetchOperationalMetrics()
+    })
+    return {
+        data, isPending, error
+    }
+}
+
+export const useFetchSeasonalAnalytics = () => {
+    const { data, isPending, error } = useQuery({
+        queryKey: ['seasonal analytics'],
+        queryFn: () => fetchSeasonalAnalytics()
+    })
+    return {
+        data, isPending, error
+    }
+}
+
+export const useFetchBusinessInsights = () => {
+    const { data, isPending, error } = useQuery({
+        queryKey: ['business insights'],
+        queryFn: () => fetchBusinessInsights()
+    })
+    return {
+        data, isPending, error
+    }
+}
+
 
 
 export const useGetAllOrders = ({ page }: { page: number }) => {

@@ -2,7 +2,6 @@ import { useFetchAdminStats, useFetchChartData } from "@/hooks";
 
 import { SingleProductSkeleton } from "../skeletons/single-product-skeleton";
 import Chart from "./chart";
-import StatsContainer from "./stats-container";
 import EnhancedAdminStats from "./enhanced-admin-stats";
 
 export default function AdminStats() {

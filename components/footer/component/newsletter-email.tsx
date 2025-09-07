@@ -31,8 +31,8 @@ export function NewsLetterEmail() {
   });
 
   // Function
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  function onSubmit(_values: z.infer<typeof formSchema>) {
+    // console.log(values);
   }
 
   return (

@@ -1,7 +1,14 @@
 {
   "root": true,
-  "extends": ["next/core-web-vitals", "next/typescript"],
-  "plugins": ["unused-imports", "simple-import-sort", "tailwindcss"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript"
+  ],
+  "plugins": [
+    "unused-imports",
+    "simple-import-sort",
+    "tailwindcss"
+  ],
   "env": {
     "browser": true,
     "node": true,
@@ -9,31 +16,59 @@
   },
   "rules": {
     // Possible Errors
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
     "no-debugger": "error",
-
     // Best Practices
-    "eqeqeq": ["error", "always"],
-
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
     // Stylistic
     "semi": "off",
-    "quotes": ["error", "double"],
-    "comma-dangle": ["error", "never"],
-
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
     // Import Sorting
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-
     // Unused imports
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
-      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "all",
+        "argsIgnorePattern": "^_"
+      }
     ],
-
+    // TypeScript unused vars
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "all",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     // Next.js specific
     "@next/next/no-img-element": "off",
-
     // TailwindCSS plugin
     "tailwindcss/classnames-order": "warn"
   }

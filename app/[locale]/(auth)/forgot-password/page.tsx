@@ -103,8 +103,7 @@ export default function ForgotPassword() {
   // Functions
   function EmailSubmit(values: z.infer<typeof formSchema>) {
     ForgotPasswordMutate(values.email, {
-      onError: (error) => {
-        console.log(error)
+      onError: (_error) => {
         return;
       },
       onSuccess: () => {

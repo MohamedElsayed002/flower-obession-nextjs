@@ -33,8 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: [product.image]
       }
     };
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
+  } catch {
     return {
       title: t("productNotFound"),
       description: t("productNotFoundDescription")

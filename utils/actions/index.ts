@@ -426,3 +426,79 @@ export async function fetchRevenueAnalytics() {
   }
   return data
 }
+
+export async function fetchProductAnalytics() {
+  const accessToken = cookies().get("access_token")?.value
+
+  const response = await fetch(
+    `${process.env.API}/users/product-analytics`, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    }
+  }
+  )
+
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to fetch Product Analytics")
+  }
+  return data
+}
+
+export async function fetchOperationalMetrics() {
+  const accessToken = cookies().get("access_token")?.value
+
+  const response = await fetch(
+    `${process.env.API}/users/operational-metrics`, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    }
+  }
+  )
+
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to fetch Operational Metrics")
+  }
+  return data
+}
+
+export async function fetchSeasonalAnalytics() {
+  const accessToken = cookies().get("access_token")?.value
+
+  const response = await fetch(
+    `${process.env.API}/users/seasonal-analytics`, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    }
+  }
+  )
+
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to fetch Seasonal Analytics")
+  }
+  return data
+}
+
+export async function fetchBusinessInsights() {
+  const accessToken = cookies().get("access_token")?.value
+
+  const response = await fetch(
+    `${process.env.API}/users/business-insights`, {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    }
+  }
+  )
+
+  const data = await response.json()
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to fetch Business Insights")
+  }
+  return data
+}

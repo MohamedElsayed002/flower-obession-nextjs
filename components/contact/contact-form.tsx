@@ -48,8 +48,8 @@ export default function ContactForm() {
 
 
     //   Function 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values);
+    function onSubmit(_values: z.infer<typeof formSchema>) {
+        // console.log(values);
     }
 
     return (
