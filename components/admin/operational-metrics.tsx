@@ -81,23 +81,22 @@ function OperationalMetrics({ data }: OperationalMetricsProps) {
         }
         : { totalOrders: 0, deliveredOrders: 0 };
 
-    const deliveryRate = deliveryMetrics.totalOrders > 0
-        ? ((deliveryMetrics.deliveredOrders / deliveryMetrics.totalOrders) * 100).toFixed(1)
-        : 0;
+    // const deliveryRate = deliveryMetrics.totalOrders > 0
+    //     ? ((deliveryMetrics.deliveredOrders / deliveryMetrics.totalOrders) * 100).toFixed(1)
+    //     : 0;
 
     // Calculate refund metrics
 
-    // @ts-expect-error
-    const refundMetrics = data.refundMetrics;
-    const cancellationRate = refundMetrics.totalOrders > 0
-        ? ((refundMetrics.cancelledOrders / refundMetrics.totalOrders) * 100).toFixed(1)
-        : 0;
-    const refundRate = refundMetrics.totalOrders > 0
-        ? ((refundMetrics.refundedOrders / refundMetrics.totalOrders) * 100).toFixed(1)
-        : 0;
-    const failureRate = refundMetrics.totalOrders > 0
-        ? ((refundMetrics.failedOrders / refundMetrics.totalOrders) * 100).toFixed(1)
-        : 0;
+    // const refundMetrics = data.refundMetrics;
+    // const cancellationRate = refundMetrics.totalOrders > 0
+    //     ? ((refundMetrics.cancelledOrders / refundMetrics.totalOrders) * 100).toFixed(1)
+    //     : 0;
+    // const refundRate = refundMetrics.totalOrders > 0
+    //     ? ((refundMetrics.refundedOrders / refundMetrics.totalOrders) * 100).toFixed(1)
+    //     : 0;
+    // const failureRate = refundMetrics.totalOrders > 0
+    //     ? ((refundMetrics.failedOrders / refundMetrics.totalOrders) * 100).toFixed(1)
+    //     : 0;
 
 
         console.log(deliveryMetrics)
