@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <ClientLayout>
       {/* ✅ Fetch user once here */}
-      <div className="min-h-screen flex flex-col">
+      <div className="flex min-h-screen flex-col">
         <header>
           <Navbar />
         </header>

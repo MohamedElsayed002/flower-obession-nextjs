@@ -126,7 +126,7 @@ export default function ShopComp() {
           }
           className="-mt-10"
         >
-          <div className="grid grid-cols-1 place-items-center items-center gap-5 md:grid-cols-3 overflow-y-hidden">
+          <div className="grid grid-cols-1 place-items-center items-center gap-5 overflow-y-hidden md:grid-cols-3">
             {displayedProducts.map((item: Products, index: number) => (
               <motion.div
                 key={item._id}

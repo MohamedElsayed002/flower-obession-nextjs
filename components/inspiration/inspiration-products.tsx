@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useState, useMemo } from "react";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { useMemo,useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import ProductCard from "@/components/single-product/product-card";
 import { ProductSkeleton } from "@/components/skeletons/product-skeleton";
@@ -155,7 +155,7 @@ export default function InspirationComp() {
             </div>
           }
         >
-          <div className="mx-auto mb-20 grid w-full max-w-6xl grid-cols-1 gap-6 p-6 md:grid-cols-3 ">
+          <div className="mx-auto mb-20 grid w-full max-w-6xl grid-cols-1 gap-6 p-6 md:grid-cols-3 overflow-hidden">
             {displayedProducts.map((product: Products, index: number) => {
               return (
                 <motion.div
@@ -163,7 +163,7 @@ export default function InspirationComp() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: (index % PRODUCTS_PER_PAGE) * 0.1 }}
-                  className="overflow-y-hidden"
+                  // className="overflow-y-hidden"
                 >
                   <ProductCard product={product} index={index} />
                 </motion.div>
