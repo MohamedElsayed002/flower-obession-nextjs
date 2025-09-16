@@ -19,14 +19,14 @@ export default function RootLayout({
   return (
     <ClientLayout>
       {/* ✅ Fetch user once here */}
-      <div>
+      <div className="min-h-screen flex flex-col">
         <header>
           <Navbar />
         </header>
-        <main className="container min-h-[38rem]">{children}</main>
+        <main className="container flex-1">{children}</main>
         <ScrollToTopButton />
-        <CookieBanner/>
-        <footer>
+        <CookieBanner />
+        <footer className="mt-auto">
           <Footer />
         </footer>
       </div>
