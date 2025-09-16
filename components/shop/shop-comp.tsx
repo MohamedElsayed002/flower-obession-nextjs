@@ -6,9 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { useState, useMemo } from "react";
+import { useMemo,useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useDebouncedCallback } from "use-debounce";
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { ProductSkeleton } from "@/components/skeletons/product-skeleton";
 import { getShopProducts } from "@/utils/actions";

@@ -1,10 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Cookies from "js-cookie";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Cookies from "js-cookie";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 
 const schema = z.object({
     phone: z.string().min(5),
-    gender: z.enum(["Male", "Female"]),
+    gender: z.enum(["Male", "Female"])
 });
 
 export default function CompleteProfilePage() {
@@ -20,15 +20,15 @@ export default function CompleteProfilePage() {
     const locale = useLocale();
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
-        defaultValues: { phone: "", gender: "Male" },
+        defaultValues: { phone: "", gender: "Male" }
     });
 
     async function onSubmit(values: z.infer<typeof schema>) {
         const token = Cookies.get("access_token");
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/complete-profile`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-            body: JSON.stringify(values),
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            body: JSON.stringify(values)
         });
         if (res.ok) {
             window.location.href = `/${locale}/`;
