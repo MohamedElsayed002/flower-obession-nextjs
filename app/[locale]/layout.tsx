@@ -1,7 +1,7 @@
+import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import type { Metadata } from "next";
 
 import { routing } from "@/i18n/routing";
 import { cn } from "@/utils/lib/utils";
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   icons: {
     icon: "/assets/big-image-bouquet.png",
     shortcut: "/assets/big-image-bouquet.png",
-    apple: "/assets/big-image-bouquet.png",
-  },
+    apple: "/assets/big-image-bouquet.png"
+  }
 };
 
 // export function generateStaticParams() {

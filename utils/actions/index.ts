@@ -133,15 +133,15 @@ export async function addToCart({
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to add product to cart: ${response.statusText}`);
+      const errorData = await response.json();
+      throw new Error(errorData.message || `Failed to add product to cart: ${response.statusText}`);
     }
 
     const data = await response.json();
-
     return data
-  } catch (error) {
+  } catch (error: any) {
     console.log('addToCart Error', error)
-    return error
+    throw error; // Re-throw the error so it can be caught by the component
   }
 }
 
@@ -253,8 +253,9 @@ export async function updateQuantity({
 
     const data = await response.json();
 
-    if (!response.ok || data.statusCode === 400) {
-      throw new Error(data.message || "Failed to update quantity");
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to update quantity");
     }
 
     return data;
@@ -267,19 +268,28 @@ export async function updateQuantity({
 export async function removeProductFromCart({ productId }: { productId: string }) {
   const accessToken = cookies().get("access_token")?.value;
 
-  const response = await fetch(
-    `${process.env.API}/cart/remove/${productId}`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
+  try {
+    const response = await fetch(
+      `${process.env.API}/cart/remove/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        }
       }
-    }
-  )
+    )
 
-  const data = await response.json()
-  return data
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed to remove product from cart");
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error: any) {
+    throw new Error(error.message || "Something went wrong");
+  }
 }
 
 

@@ -71,69 +71,12 @@ function OperationalMetrics({ data }: OperationalMetricsProps) {
         avgOrderValue: item.avgOrderValue
     }));
 
-    // Calculate delivery metrics
-    const deliveryMetrics = data.deliveryPerformance && data.deliveryPerformance.length > 0
-        ? {
-            totalOrders: data.deliveryPerformance.reduce((sum, item) => sum + item.count, 0),
-            deliveredOrders: data.deliveryPerformance
-                .filter(item => item._id === "delivered")
-                .reduce((sum, item) => sum + item.count, 0)
-        }
-        : { totalOrders: 0, deliveredOrders: 0 };
-
-    // const deliveryRate = deliveryMetrics.totalOrders > 0
-    //     ? ((deliveryMetrics.deliveredOrders / deliveryMetrics.totalOrders) * 100).toFixed(1)
-    //     : 0;
-
-    // Calculate refund metrics
-
-    // const refundMetrics = data.refundMetrics;
-    // const cancellationRate = refundMetrics.totalOrders > 0
-    //     ? ((refundMetrics.cancelledOrders / refundMetrics.totalOrders) * 100).toFixed(1)
-    //     : 0;
-    // const refundRate = refundMetrics.totalOrders > 0
-    //     ? ((refundMetrics.refundedOrders / refundMetrics.totalOrders) * 100).toFixed(1)
-    //     : 0;
-    // const failureRate = refundMetrics.totalOrders > 0
-    //     ? ((refundMetrics.failedOrders / refundMetrics.totalOrders) * 100).toFixed(1)
-    //     : 0;
 
 
-        console.log(deliveryMetrics)
 
     return (
-        <div className="space-y-8 mb-20">
-            {/* Key Metrics Cards
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-lg border border-green-200 bg-green-50 p-6 text-center">
-                    <h3 className="mb-2 text-lg font-semibold text-green-800">{t("delivery-rate")}</h3>
-                    <p className="text-3xl font-bold text-green-600">{deliveryRate}%</p>
-                    <p className="mt-1 text-sm text-gray-600">
-                        {deliveryMetrics.deliveredOrders} / {deliveryMetrics.totalOrders} {t("orders")}
-                    </p>
-                </div>
-                <div className="rounded-lg border border-red-200 bg-red-50 p-6 text-center">
-                    <h3 className="mb-2 text-lg font-semibold text-red-800">{t("cancellation-rate")}</h3>
-                    <p className="text-3xl font-bold text-red-600">{cancellationRate}%</p>
-                    <p className="mt-1 text-sm text-gray-600">
-                        {refundMetrics.cancelledOrders} {t("cancelled-orders")}
-                    </p>
-                </div>
-                <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-6 text-center">
-                    <h3 className="mb-2 text-lg font-semibold text-yellow-800">{t("refund-rate")}</h3>
-                    <p className="text-3xl font-bold text-yellow-600">{refundRate}%</p>
-                    <p className="mt-1 text-sm text-gray-600">
-                        {refundMetrics.refundedOrders} {t("refunded-orders")}
-                    </p>
-                </div>
-                <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
-                    <h3 className="mb-2 text-lg font-semibold text-gray-800">{t("failure-rate")}</h3>
-                    <p className="text-3xl font-bold text-gray-600">{failureRate}%</p>
-                    <p className="mt-1 text-sm text-gray-600">
-                        {refundMetrics.failedOrders} {t("failed-orders")}
-                    </p>
-                </div>
-            </div> */}
+        <div className="mb-20 space-y-8">
+
 
             {/* Payment Method Distribution */}
             <div className="rounded-lg border border-green-200 bg-white p-6 shadow-lg">

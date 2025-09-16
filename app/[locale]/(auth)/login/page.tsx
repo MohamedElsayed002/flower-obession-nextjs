@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -10,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import useLogin from "@/hooks/auth/use-login-hook";
+import { TestLoginAction } from "@/utils/actions/auth/test-login-action";
 
 export default function LoginPage() {
   const t = useTranslations();
@@ -57,6 +59,22 @@ export default function LoginPage() {
       }
     );
   }
+
+  async function loginAsTestAdmin() {
+    try {
+      const result = await TestLoginAction();
+      if ("access_token" in result) {
+        Cookies.set("access_token", result.access_token, {
+          expires: 7,
+          secure: true,
+          sameSite: "Strict"
+        });
+        window.location.href = `/${locale}/admin`;
+      }
+    } catch { }
+  }
+
+
 
   return (
     <Form {...form}>
@@ -110,6 +128,14 @@ export default function LoginPage() {
         >
           {t("submit")}
         </Button>
+        <Button
+          type="button"
+          onClick={loginAsTestAdmin}
+          className="w-full border border-custom-brown text-white  hover:bg-custom-brown/10"
+        >
+          {t("login-as-test-admin")}
+        </Button>
+        <p className="text-sm text-custom-brown-2">{t("optional-feature")}</p>
         <div className="-mt-2 text-custom-brown-2">
           <span> {t("dont-have-an-account")}</span>
           <Link tabIndex={4} className="underline" href={`/${locale}/register`}>

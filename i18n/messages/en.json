@@ -74,6 +74,7 @@
   "enter-your-email-address": "Email address",
   "enter-email-address-correctly": "Enter email address correctly",
   "subscribe": "Subscribe",
+  "continue-with": "Continue with",
   "email-required": "Email Required",
   "email-invalid": "Email Invalid",
   "enter-your-password": "Enter your password",
@@ -373,5 +374,7 @@
   "top-performing-city": "Top Performing City",
   "most-popular-category": "Most Popular Category",
   "customer-loyalty": "Customer Loyalty",
-  "of-customers-make-repeat-purchases": "of customers make repeat purchases"
+  "of-customers-make-repeat-purchases": "of customers make repeat purchases",
+  "login-as-test-admin": "Login as Test Admin",
+  "optional-feature": "Optional Feature for Testing 🙌 take a look at admin panel "
 }

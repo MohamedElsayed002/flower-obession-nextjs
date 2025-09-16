@@ -74,6 +74,7 @@
   "enter-your-email-address": "عنوان بريدك الإلكتروني",
   "enter-email-address-correctly": "أدخل عنوان البريد الإلكتروني بشكل صحيح",
   "subscribe": "يشترك",
+  "continue-with": "تسجيل باستخدام",
   "email-required": "البريد الإلكتروني المطلوب",
   "email-invalid": "البريد الإلكتروني غير صالح",
   "enter-your-password": "أدخل كلمة المرور الخاصة بك",
@@ -369,5 +370,7 @@
   "top-performing-city": "أفضل مدينة أداءً",
   "most-popular-category": "الفئة الأكثر شعبية",
   "customer-loyalty": "ولاء العملاء",
-  "of-customers-make-repeat-purchases": "من العملاء يقومون بعمليات شراء متكررة"
+  "of-customers-make-repeat-purchases": "من العملاء يقومون بعمليات شراء متكررة",
+  "login-as-test-admin": "تسجيل الدخول كمدير الاختبار",
+  "optional-feature": "ميزة اختيارية للاختبار 🙌 انظر إلى لوحة المدير"
 }

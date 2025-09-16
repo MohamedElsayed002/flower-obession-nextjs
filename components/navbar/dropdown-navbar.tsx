@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { useEffect,useState } from "react";
 import { toast } from "sonner";
 
 import {
@@ -25,6 +26,19 @@ export const DropdownNavbar = () => {
   const tNav = useTranslations("navigation");
   const { user, clearUser } = useUserStore();
   const locale = useLocale();
+  const [open, setOpen] = useState(false);
+
+  // Close dropdown when screen size changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) { // md breakpoint
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleLogout = async () => {
     await removeCookiesFromHeader();
@@ -32,11 +46,11 @@ export const DropdownNavbar = () => {
     setTimeout(() => {
       toast.success(t("logout-success"));
 
-    },2000)
+    }, 2000)
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="border border-gray-400">
           <Menu />
@@ -45,7 +59,7 @@ export const DropdownNavbar = () => {
       <DropdownMenuContent className="w-52" align="end" sideOffset={10}>
         {user && user.role === "Admin" && (
           <DropdownMenuItem>
-            <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/admin`}>
+            <Link className="w-full rounded-md p-2 hover:bg-gray-100 " href={`/${locale}/admin`} onClick={() => setOpen(false)}>
               {t("Admin")}
             </Link>
           </DropdownMenuItem>
@@ -66,9 +80,9 @@ export const DropdownNavbar = () => {
             <DropdownMenuItem key={link.id} className="uppercase">
               <Link
                 href={`/${locale}${link.href}`}
-                className={`w-full rounded-md px-2 py-1 transition-all ${
-                  pathname === link.href ? "bg-gray-400 p-2 font-semibold text-white" : ""
-                }`}
+                className={`w-full rounded-md px-2 py-1 transition-all ${pathname === link.href ? "bg-gray-400 p-2 font-semibold text-white" : ""
+                  }`}
+                onClick={() => setOpen(false)}
               >
                 {tNav(link.name)}
               </Link>
@@ -79,14 +93,17 @@ export const DropdownNavbar = () => {
         <DropdownMenuSeparator />
         {user ? (
           <DropdownMenuItem>
-            <Button onClick={handleLogout} variant="outline" className="w-full">
+            <Button onClick={() => {
+              handleLogout();
+              setOpen(false);
+            }} variant="outline" className="w-full">
               {t("logout")}
             </Button>
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem>
             <Button className="uppercase hover:opacity-80" variant="ghost">
-              <Link href={`/${locale}/login`}>{t("login-register")}</Link>
+              <Link href={`/${locale}/login`} onClick={() => setOpen(false)}>{t("login-register")}</Link>
             </Button>
           </DropdownMenuItem>
         )}
