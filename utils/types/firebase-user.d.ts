@@ -5,6 +5,7 @@ export type FirebaseUser = {
     photoURL: string | null;
     emailVerified: boolean;
     phoneNumber: string | null;
+    role: 'User' | 'Admin';
     providerId: string;
     createdAt?: string;
     lastLoginAt?: string;

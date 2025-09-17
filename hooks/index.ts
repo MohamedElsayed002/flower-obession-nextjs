@@ -120,7 +120,7 @@ export const useUserCart = () => {
     const { data, isPending, error } = useQuery({
         queryKey: ["cart", user?._id, locale],
         queryFn: () => user?._id ? getUserCart({ userId: user._id, lang: locale }) : Promise.reject(new Error("User ID is undefined")),
-        enabled: !!user, // Prevents query if no user
+        enabled: !!user // Prevents query if no user
     });
 
     return { data, isPending, error };

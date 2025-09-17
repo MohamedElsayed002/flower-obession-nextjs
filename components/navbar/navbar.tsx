@@ -42,7 +42,9 @@ export function Navbar() {
         <LocaleToggle />
 
         {/* Show Nothing When Loading */}
-        {loading ? <Loader className="animate-spin" /> : user ? <UserNavbar user={user} clearUser={clearUser} /> : (
+        {loading ? <Loader className="animate-spin" /> : user ? (
+          <UserNavbar user={user} clearUser={clearUser} />
+        ) : (
           <Button className="border border-yellow-700 uppercase hover:opacity-80" variant="ghost" asChild>
             <Link href={`/${locale}/login`}>{t("login-register-0")}</Link>
           </Button>

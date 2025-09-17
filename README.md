@@ -204,9 +204,12 @@ Contributions are welcome!
 3. Commit: `git commit -m "feat: add awesome"`
 4. Push and open a PR
 
+<<<<<<< HEAD
 ## License
 
 MIT
+=======
+>>>>>>> 27a42873c2f3250aa95ffeacff7d7b35ea631f6a
 
 ## Contact
 

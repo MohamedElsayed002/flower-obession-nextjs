@@ -1,13 +1,10 @@
 import { User } from "@/utils/types/user";
-import { FirebaseUser, FirebaseUserProfile } from "@/utils/types/firebase-user";
 import { create } from "zustand";
 import { GetUserInfo } from "@/utils/actions";
 import { verifyFirebaseTokenWithBackend } from "@/utils/actions/auth/firebase-verify-action";
 
-type UserType = User | FirebaseUser;
-
 interface UserState {
-  user: UserType | null;
+  user: User | null;
   loading: boolean;
   fetchUser: () => Promise<void>;
   fetchFirebaseUser: () => Promise<void>;
@@ -17,10 +14,7 @@ interface UserState {
 
 export const useUserStore = create<UserState>((set, get) => ({
   user: null,
-  firebaseUser: null,
-  userProfile: null,
   loading: true,
-  isFirebaseUser: false,
 
   fetchUser: async () => {
     try {

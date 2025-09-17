@@ -28,7 +28,7 @@ export function FavoriteSingleProduct({ item }: { item: Products }) {
       <div className="absolute top-5 md:right-8 ltr:right-14 rtl:right-10">
         <div
           aria-label={t("add-remove-from-favorite")}
-          onClick={() => FavoriteButtonMutate(item._id)}
+          onClick={() => FavoriteButtonMutate(item._id ?? "")}
           className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-custom-yellow-2 text-white"
         >
           {isFavoriteButtonLoading ? <Loader className="animate-spin" /> : <X />}

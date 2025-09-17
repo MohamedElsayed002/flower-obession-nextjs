@@ -46,7 +46,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
             variant="outline"
             className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
             onClick={() =>
-              updateMutate({ productId: item.product._id, quantity: item.quantity - 1 })
+              updateMutate({ productId: item.product._id ?? "", quantity: item.quantity - 1 })
             }
           >
             <Minus />
@@ -60,7 +60,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
             variant="outline"
             className="bg-custom-yellow-2 hover:bg-custom-yellow-2"
             onClick={() =>
-              updateMutate({ productId: item.product._id, quantity: item.quantity + 1 })
+              updateMutate({ productId: item.product._id ?? "", quantity: item.quantity + 1 })
             }
           >
             <Plus />
@@ -75,7 +75,7 @@ export function SingleProductRow({ item }: { item: CartItem }) {
         <Button
           aria-label={t("remove-product")}
           disabled={isPending}
-          onClick={() => mutate({ productId: item.product._id })}
+          onClick={() => mutate({ productId: item.product._id ?? "" })}
           className="bg-custom-yellow-2 text-black hover:bg-custom-yellow-2"
         >
           <X />
