@@ -1,17 +1,28 @@
-# Flower Obsession
+## Flower Obsession
 
-Flower Obsession is a modern, full-stack web application designed for a florist business, offering users the ability to design custom bouquets, explore inspirational designs, and access services like express shipping and ecological deliveries. The frontend is built with Next.js, a React framework, and is deployed on Vercel for seamless performance and scalability. The application supports multiple languages, with the Arabic version accessible at florist-nextjs-neon.vercel.app/ar.
+Flower Obsession is a modern e-commerce web app for a florist business. Users can browse curated bouquet collections, add products to favorites and cart, place orders with cash or Stripe checkout, and manage their profiles. An admin dashboard provides rich analytics on revenue, products, and operations. The app is fully localized in Arabic and English.
 
 ![Demo GIF](./images/output.gif)
+
+### Live
+- Arabic: florist-nextjs-neon.vercel.app/ar
 
 ## Table of Contents
 
 - Features
+- Screens and Routes
 - Tech Stack
+- Architecture
 - Getting Started
   - Prerequisites
   - Installation
-  - Running the Application
+  - Environment Variables
+  - Run Locally
+- Internationalization
+- Authentication and Middleware
+- Payments (Stripe)
+- Admin Dashboard
+- Project Structure
 - Deployment
 - Contributing
 - License
@@ -19,109 +30,185 @@ Flower Obsession is a modern, full-stack web application designed for a florist 
 
 ## Features
 
-- **Custom Bouquet Design**: Create personalized bouquets with custom flowers, colors, and arrangements.
-- **Inspiration Section**: Browse stunning bouquet examples at /ar/inspiration.
-- **Express and Nationwide Shipping**: Fast and reliable delivery options, including VIP services.
-- **Ecological Deliveries**: Sustainable delivery practices with a focus on environmental responsibility.
-- **Home Service**: Professional flower decoration services for homes and events.
-- **Multilingual Support**: Accessible in multiple languages, including Arabic.
-- **Responsive Design**: Optimized for both desktop and mobile devices.
+- User authentication: Register, login, forgot/reset/verify password flows
+- Auth protection: Middleware guarding `cart`, `favorite`, `checkout`, `profile`, `orders`, `admin`
+- Product browsing: Home, Shop with search and infinite scroll, Inspiration
+- Product details: SEO-friendly product pages via `slug`
+- Cart and favorites: Add/update/remove, quantity updates, persistence via API
+- Checkout: Cash on delivery and Stripe checkout redirect
+- Orders: Order history for users
+- Profile: Edit name and phone
+- Admin dashboard: Revenue analytics, product analytics, operational and seasonal metrics, business insights
+- Internationalization: `en` and `ar` with locale-aware routing
+- Performance UX: React Query caching, optimistic updates, and toasts
+- Modern UI: Tailwind CSS + shadcn/ui components, responsive design, dark mode ready
+
+## Screens and Routes
+
+Localized routes live under `/[locale]` where `locale` is `en` or `ar`.
+
+- Public:
+  - `/(en|ar)`: Home
+  - `/(en|ar)/shop`: Shop with search
+  - `/(en|ar)/inspiration`: Inspiration gallery
+  - `/(en|ar)/contact`: Contact
+  - `/(en|ar)/[...rest]`: Marketing/static
+
+- Auth:
+  - `/(en|ar)/login`, `/(en|ar)/register`
+  - `/(en|ar)/forgot-password`, `/(en|ar)/complete-profile`
+
+- Protected:
+  - `/(en|ar)/cart`, `/(en|ar)/favorite`
+  - `/(en|ar)/checkout`
+  - `/(en|ar)/orders`, `/(en|ar)/profile`
+  - `/(en|ar)/admin`
 
 ## Tech Stack
 
-- **Frontend**: Next.js, React, TypeScript
-- **Font Optimization**: next/font with Geist
-- **Deployment**: Vercel
-- **Backend**: Integrated with a NestJS backend (see nestjs-florist-app)
-- **Database**: MongoDB
+- Framework: Next.js 14 (App Router), React 18, TypeScript
+- State & Data: Zustand, @tanstack/react-query
+- i18n: next-intl with middleware-based locale routing
+- UI: Tailwind CSS, shadcn/ui (Radix primitives), lucide-react, framer-motion
+- Payments: Stripe (redirect checkout)
+- Notifications: sonner
+- Backend: NestJS API (`process.env.API`) with MongoDB
+- Deployment: Vercel
+
+## Architecture
+
+- App Router with segmented layouts: `app/[locale]/(auth|dashbard)` groups
+- Locale-aware routing and middleware: `i18n/routing.ts`, `middleware.ts`
+- API access via server actions: `utils/actions/index.ts`
+- Global user store: `store/userStore.ts` hydrated via `utils/providers/client-provider.tsx`
+- Data fetching and caching hooks: `hooks/index.ts`
+- UI components organized by domain: `components/*`
+
+Key flows:
+- Auth: JWT token stored in `access_token` cookie; middleware blocks/redirects
+- Cart/Favorites/Orders: Authenticated fetches to API with Bearer token
+- Checkout:
+  - Cash: `createOrder` posts address and creates order
+  - Stripe: `orderStripe` creates a session on backend and redirects to Stripe URL
 
 ## Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed:
-
-- Node.js (v18 or later)
+- Node.js v18+
 - npm, Yarn, pnpm, or Bun
-- A code editor like VS Code
 
 ### Installation
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/MohamedElsayed002/flower-obession-nextjs.git
-   cd flower-obession-nextjs
-   ```
-   
-2. Create a .env file in the root directory and add the following variables:
-```env
-
-API = https://florist-nestjs.vercel.app
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = ##
-STRIPE_SECRET_KEY = ##
+```bash
+git clone https://github.com/MohamedElsayed002/flower-obession-nextjs.git
+cd flower-obession-nextjs
+npm install
+# or: yarn install / pnpm install / bun install
 ```
 
-3. Install dependencies:
+### Environment Variables
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   # or
-   bun install
-   ```
+Create a `.env` file in the project root:
 
-### Running the Application
+```env
+# Backend API base URL
+API=https://florist-nestjs.vercel.app
 
-1. Start the development server:
+# Stripe (Checkout uses backend; publishable key is used client-side as needed)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_publishable_key
+STRIPE_SECRET_KEY=your_secret_key
+```
 
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   # or
-   bun dev
-   ```
+### Run Locally
 
-2. Open http://localhost:3000 in your browser to view the application.
+```bash
+npm run dev
+# or: yarn dev / pnpm dev / bun dev
+```
 
-3. Edit `app/page.tsx` to see changes update automatically.
+Then open `http://localhost:3000`.
+
+## Internationalization
+
+- Locales: `en`, `ar` configured in `i18n/routing.ts`
+- Middleware applies locale and rewrites to the correct segment
+- Locale utilities: `i18n/routing.ts` exports `Link`, `useRouter`, `usePathname`, etc.
+- Toggle in UI: `components/common/toggle-locale.tsx`
+
+## Authentication and Middleware
+
+- Middleware reads `access_token` from cookie or `Authorization` header
+- Blocks access to protected routes when unauthenticated; redirects to `/{locale}/login`
+- Prevents authenticated users from visiting login/register/forgot-password; redirects to `/{locale}`
+- User profile hydration runs globally in `client-provider.tsx` via Zustand store
+
+## Payments (Stripe)
+
+- Stripe checkout is initiated with `orderStripe({ lang })`
+- The backend creates a Checkout Session and returns `url`; client redirects
+- Cash orders are supported via `createOrder({ street, city, phone })`
+
+## Admin Dashboard
+
+Available to authenticated users with admin permissions (checked by backend). The dashboard surfaces:
+- Enhanced admin stats
+- Revenue analytics
+- Product analytics
+- Operational metrics
+- Seasonal analytics
+- Business insights
+
+Data hooks live in `hooks/index.ts` and call server actions in `utils/actions/index.ts`.
+
+## Project Structure (excerpt)
+
+```text
+app/
+  [locale]/(auth|dashbard)/...
+components/
+  admin/, cart/, checkout/, common/, favorite/, footer/, home/, navbar/, profile/, shop/, single-product/, ui/
+hooks/
+  auth/*, index.ts
+i18n/
+  messages/en.json, ar.json, routing.ts
+store/
+  userStore.ts
+utils/
+  actions/*, providers/*, types/*
+```
+
+## Scripts
+
+```bash
+npm run dev       # Start dev server
+npm run build     # Build for production
+npm run start     # Start production server
+npm run lint      # Lint
+npm run lint:fix  # Lint and fix
+```
 
 ## Deployment
 
-The application is deployed on Vercel for optimal performance. To deploy your own instance:
-
-1. Push your changes to a GitHub repository.
-2. Connect the repository to Vercel via the Vercel Dashboard.
-3. Follow the Next.js deployment documentation for detailed steps.
-
-The live Arabic version is available at florist-nextjs-neon.vercel.app/ar.
+Deployed on Vercel. To deploy your own instance:
+1. Push to a GitHub repo
+2. Import the repo in Vercel
+3. Set required environment variables (`API`, Stripe keys)
+4. Deploy
 
 ## Contributing
 
-Contributions are welcome! To contribute:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature`).
-3. Make your changes and commit (`git commit -m 'Add your feature'`).
-4. Push to the branch (`git push origin feature/your-feature`).
-5. Open a pull request.
-
-For feedback or suggestions, visit the Next.js GitHub repository or contact the maintainer.
+Contributions are welcome!
+1. Fork the repo
+2. Create a feature branch: `git checkout -b feat/awesome`
+3. Commit: `git commit -m "feat: add awesome"`
+4. Push and open a PR
 
 ## License
 
-This project is licensed under the MIT License.
+MIT
 
 ## Contact
 
-For questions or support, contact the maintainer:
-
-- [GitHub: MohamedElsayed002](https://github.com/MohamedElsayed002)
-- [LinkedIn: Mohamed Elsayed](https://www.linkedin.com/in/mohamedelsayed2002/)
-
+- GitHub: MohamedElsayed002
+- LinkedIn: Mohamed Elsayed (linkedin.com/in/mohamedelsayed2002/)

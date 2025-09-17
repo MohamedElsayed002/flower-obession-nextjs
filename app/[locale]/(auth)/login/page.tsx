@@ -10,6 +10,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useFirebaseAuth } from "@/hooks/auth/use-firebase-auth";
 import useLogin from "@/hooks/auth/use-login-hook";
 import { TestLoginAction } from "@/utils/actions/auth/test-login-action";
 
@@ -18,6 +19,7 @@ export default function LoginPage() {
   const locale = useLocale();
 
   const { mutate: LoginMutate, isPending, error } = useLogin();
+  const { mutate: signInWithGoogle, isPending: isGooglePending, error: googleError } = useFirebaseAuth();
 
   const formSchema = z.object({
     email: z
@@ -74,10 +76,16 @@ export default function LoginPage() {
     } catch { }
   }
 
+  function handleGoogleSignIn(e:React.FormEvent) {
+    e.preventDefault()
+    signInWithGoogle();
+  }
+
 
 
   return (
-    <Form {...form}>
+    <>
+          <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-96 space-y-4 ">
         <h1 className="text-4xl text-custom-brown">{t("login")}</h1>
         <FormField
@@ -119,6 +127,7 @@ export default function LoginPage() {
           )}
         />
         <p className="text-sm text-red-500">{error?.message}</p>
+        <p className="text-sm text-red-500">{googleError?.message}</p>
         <Button
           tabIndex={3}
           aria-label={t("submit")}
@@ -134,6 +143,22 @@ export default function LoginPage() {
           className="w-full border border-custom-brown text-white  hover:bg-custom-brown/10"
         >
           {t("login-as-test-admin")}
+        </Button>
+        <Button
+          onClick={handleGoogleSignIn}
+          disabled={isGooglePending}
+          className="w-full border border-custom-brown text-white hover:bg-custom-brown/10"
+        >
+          {isGooglePending ? "Signing in..." : (
+            <span className="flex items-center justify-center gap-2">
+              <img
+                src="/google-icon.webp"
+                alt="Google Icon"
+                className="h-5 w-5"
+              />
+              {t("sign-in-with-google")}
+            </span>
+          )}
         </Button>
         <p className="text-sm text-custom-brown-2">{t("optional-feature")}</p>
         <div className="-mt-2 text-custom-brown-2">
@@ -151,5 +176,6 @@ export default function LoginPage() {
         </Link>
       </form>
     </Form>
+    </>
   );
 }

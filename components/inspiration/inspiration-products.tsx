@@ -155,7 +155,7 @@ export default function InspirationComp() {
             </div>
           }
         >
-          <div className="mx-auto mb-20 grid w-full max-w-6xl grid-cols-1 gap-6 p-6 md:grid-cols-3 overflow-hidden">
+          <div className="mx-auto mb-20 grid w-full max-w-6xl grid-cols-1 gap-6 overflow-hidden p-6 md:grid-cols-3">
             {displayedProducts.map((product: Products, index: number) => {
               return (
                 <motion.div

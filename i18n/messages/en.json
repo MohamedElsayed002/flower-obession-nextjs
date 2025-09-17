@@ -376,5 +376,8 @@
   "customer-loyalty": "Customer Loyalty",
   "of-customers-make-repeat-purchases": "of customers make repeat purchases",
   "login-as-test-admin": "Login as Test Admin",
-  "optional-feature": "Optional Feature for Testing 🙌 take a look at admin panel "
+  "optional-feature": "Optional Feature for Testing 🙌 take a look at admin panel ",
+  "enter-your-phone" : "Enter your phone +20 0000",
+  "complete-profile" : "Complete Profile",
+  "sign-in-with-google": "Sign in with Google"
 }

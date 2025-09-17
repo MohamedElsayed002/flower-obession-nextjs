@@ -372,5 +372,8 @@
   "customer-loyalty": "ولاء العملاء",
   "of-customers-make-repeat-purchases": "من العملاء يقومون بعمليات شراء متكررة",
   "login-as-test-admin": "تسجيل الدخول كمدير الاختبار",
-  "optional-feature": "ميزة اختيارية للاختبار 🙌 انظر إلى لوحة المدير"
+  "optional-feature": "ميزة اختيارية للاختبار 🙌 انظر إلى لوحة المدير",
+  "enter-your-phone" : "ادخل رقمك الهاتف +20 0000",
+  "complete-profile" : "اكمل صفحه الشخصيه",
+  "sign-in-with-google": "تسجيل الدخول باستخدام جوجل"
 }

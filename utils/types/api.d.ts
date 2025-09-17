@@ -1,8 +1,8 @@
 declare type DatabaseFields = {
-    _id: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number
+    _id?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    __v?: number
 };
 
 declare type SuccessfulResponse = {
