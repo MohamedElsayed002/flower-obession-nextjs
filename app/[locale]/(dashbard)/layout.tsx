@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import type { Metadata } from "next";
 
 import CookieBanner from "@/components/common/cookie-banner";
@@ -6,10 +7,18 @@ import Footer from "@/components/footer/footer";
 import { Navbar } from "@/components/navbar/navbar";
 import ClientLayout from "@/utils/providers/client-provider";
 
-export const metadata: Metadata = {
-  title: "Flower Obsession",
-  description: "Flower ob description"
-};
+
+
+export function generateMetadata(): Metadata {
+  return {
+    // ... your existing metadata
+    title: "Flower Obsession",
+    description: "Flower ob description",
+    other: {
+      ...Sentry.getTraceData()
+    }
+  };
+}
 
 export default function RootLayout({
   children
