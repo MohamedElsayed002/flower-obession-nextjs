@@ -11,7 +11,7 @@ Sentry.init({
   integrations: [
     Sentry.replayIntegration(),
     Sentry.feedbackIntegration({
-      color: "system"
+      autoInject: false
     })
   ],
 
@@ -33,3 +33,33 @@ Sentry.init({
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+
+if (typeof window !== "undefined") {
+  const mountFeedbackWidget = () => {
+    const feedback = Sentry.getFeedback();
+    if (!feedback) {
+      return;
+    }
+
+    if (document.querySelector("[data-sentry-feedback-widget='true']")) {
+      return;
+    }
+
+    const widget = feedback.createWidget({
+      triggerLabel: "Feedback"
+    });
+
+    const widgetElement = widget.el;
+    widgetElement.setAttribute("data-sentry-feedback-widget", "true");
+    widgetElement.id = "sentry-feedback-button";
+
+    document.body.appendChild(widgetElement);
+    widget.appendToDom();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mountFeedbackWidget, { once: true });
+  } else {
+    mountFeedbackWidget();
+  }
+}

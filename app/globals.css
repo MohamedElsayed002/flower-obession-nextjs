@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { 
+:root {
   --font-bodoni: "Bodoni Moda", serif;
 
 }
+
 body {
   font-family: var(--font-bodoni);
   background-color: #fdf3e9;
@@ -25,7 +26,7 @@ body {
 
 @layer components {
   .container {
-    @apply mx-auto max-w-6xl xl:max-w-7xl px-8 ;
+    @apply mx-auto max-w-6xl xl:max-w-7xl px-8;
   }
 }
 
@@ -59,6 +60,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -91,7 +93,21 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+#sentry-feedback-button {
+  position: fixed;
+  display: inline-flex;
+  bottom: 32px !important;
+  left: 32px !important;
+  right: unset !important;
+  background: red !important;
+  max-width: fit-content;
+  width: auto;
+  min-width: unset;
+  z-index: 9999;
 }

@@ -38,7 +38,7 @@ const ScrollToTopButton = () => {
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 rounded-full bg-custom-brown p-3 text-white shadow-lg hover:bg-custom-brown/80"
+          className="fixed bottom-20 right-5 z-50 rounded-full bg-custom-brown p-3 text-white shadow-lg hover:bg-custom-brown/80"
         >
           <ArrowUp className="h-5 w-5" />
         </motion.button>
