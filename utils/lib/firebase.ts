@@ -6,12 +6,12 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBZgG3CLTl1CGSSiMBJVIemFGDL51FpUJU",
-  authDomain: "booking-app-6a26a.firebaseapp.com",
+  apiKey: "",
+  authDomain: "",
   projectId: "booking-app-6a26a",
-  storageBucket: "booking-app-6a26a.firebasestorage.app",
-  messagingSenderId: "639231971358",
-  appId: "1:639231971358:web:c131045504746b166fde0f"
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 
 // Initialize Firebase
