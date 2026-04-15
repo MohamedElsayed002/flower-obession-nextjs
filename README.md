@@ -2,6 +2,8 @@
 
 Flower Obsession is a modern e-commerce web app for a florist business. Users can browse curated bouquet collections, add products to favorites and cart, place orders with cash or Stripe checkout, and manage their profiles. An admin dashboard provides rich analytics on revenue, products, and operations. The app is fully localized in Arabic and English.
 
+Database are gone. because my database was saved in AWS / Bahrain (me-south-1). it is down with UAE :) 
+
 ![Demo GIF](./images/output.gif)
 
 ### Live
